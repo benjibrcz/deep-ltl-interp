@@ -126,7 +126,15 @@ def __combine(tasks, agents, max_episode_steps):
 # ----------------------------------------
 # LTL
 # ----------------------------------------
-ltl_tasks = {'Ltl0': {}, 'Ltl1': {}, 'Ltl2': {}, 'Ltl3': {}, 'Ltl2.fixed': {}}
+ltl_tasks = {
+    'Ltl0': {}, 'Ltl1': {}, 'Ltl2': {}, 'Ltl3': {}, 'Ltl2.fixed': {},
+    # Hard optimality configurations for training planning
+    'Ltl2.hard1': {},  # extreme_opposite
+    'Ltl2.hard2': {},  # tempting_trap
+    'Ltl2.hard3': {},  # diagonal_trap
+    'Ltl2.hard4': {},  # timeout_trap
+    'Ltl2.hardmix': {},  # randomly samples from all hard configs
+}
 __combine(ltl_tasks, robots, max_episode_steps=None)
 
 # ----------------------------------------

@@ -31,12 +31,21 @@ class Trainer:
         self.args = args
         self.text_logger = TextLogger(args)
         self.model_store = ModelStore.from_config(args)
+        # For fine-tuning from another experiment
+        self.from_exp = getattr(args, 'from_exp', None)
+        self.from_seed = getattr(args, 'from_seed', 0)
 
     def train(self, log_csv: bool = True, log_wandb: bool = False):
         training_status, resuming = self.get_training_status()
         envs = self.make_envs(training_status["curriculum_stage"])
         if resuming:
             self.model_store.load_vocab()
+        elif self.from_exp:
+            # Fine-tuning: load vocab from source experiment
+            source_store = ModelStore(self.args.experiment.env.split('.')[0], self.from_exp, self.from_seed)
+            source_store.load_vocab()
+            self.model_store.save_vocab()
+            self.text_logger.important_info(f"Loaded vocab from {self.from_exp}")
         else:
             assignments = envs[0].get_possible_assignments()
             print(f'Number of assignments: {len(assignments)}')
@@ -117,7 +126,21 @@ class Trainer:
             self.text_logger.important_info("Resuming training from existing run.")
             resuming = True
         except FileNotFoundError:
-            training_status = {"num_steps": 0, "num_updates": 0, "curriculum_stage": 0, "num_eval_steps": 0}
+            if self.from_exp:
+                # Fine-tuning: load model from source experiment
+                source_store = ModelStore(self.args.experiment.env.split('.')[0], self.from_exp, self.from_seed)
+                source_status = source_store.load_training_status()
+                # Keep the model weights but reset training counters and curriculum
+                training_status = {
+                    "num_steps": 0,
+                    "num_updates": 0,
+                    "curriculum_stage": 0,
+                    "num_eval_steps": 0,
+                    "model_state": source_status["model_state"]
+                }
+                self.text_logger.important_info(f"Fine-tuning from {self.from_exp} (seed {self.from_seed})")
+            else:
+                training_status = {"num_steps": 0, "num_updates": 0, "curriculum_stage": 0, "num_eval_steps": 0}
         return training_status, resuming
 
     def make_logger(self, log_csv: bool, log_wandb: bool, resuming: bool) -> MultiLogger:
@@ -160,6 +183,11 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--log_csv", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--log_wandb", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument('--save', action=argparse.BooleanOptionalAction, default=True)
+    # Fine-tuning options
+    parser.add_argument('--from_exp', type=str, default=None,
+                        help='Name of experiment to load model weights from (for fine-tuning)')
+    parser.add_argument('--from_seed', type=int, default=0,
+                        help='Seed of the model to load from (for fine-tuning)')
     args = parser.parse_args()
 
     if args.experiment.device == 'gpu':

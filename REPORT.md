@@ -149,11 +149,74 @@ The DeepLTL agent exhibits exactly the pattern predicted by the "fake agents" hy
 
 ---
 
-## Next Steps
+## Experiment 5: Training on Hard Optimality Maps
 
-1. **Train on hard optimality maps** where myopic choice leads to failure (not just suboptimality)
-2. **Re-probe after training** to check if chained distance encoding improves
-3. **Systematic local/global planning battery** to map the precise boundary of capability
+**Question**: Can we induce planning by training on environments where myopic behavior leads to much longer paths?
+
+**Setup**: Created 4 "hard optimality" map configurations where:
+- Each color has 2 zones at strategic positions
+- Myopic choice leads to 24-81% longer total paths
+- All 4 colors (green, yellow, blue, magenta) used with random color pair selection
+- Fine-tuned from existing agent for 2M steps
+
+### Results: Improved Robustness, NOT Planning
+
+| Metric | Before Training | After Training |
+|--------|-----------------|----------------|
+| Task Success Rate | 30% | **100%** |
+| Optimal Choice Rate | 20% | 20% |
+| Myopic Choice Rate | 80% | **80%** |
+| Episode Length | 240 steps | 122 steps |
+
+The agent learned to complete tasks faster and more reliably, but its planning behavior didn't change at all.
+
+### Probing: Representations Unchanged
+
+| Feature | Before Training (R²) | After Training (R²) |
+|---------|---------------------|---------------------|
+| Chained distance (total via blue) | 0.438 | 0.367 |
+| Blue → Green distance | 0.226 | 0.207 |
+| Nearest goal distance | 0.765 | 0.776 |
+
+The chained distance encoding actually got **slightly worse** after training, not better.
+
+### Interpretation
+
+**Training on hard environments doesn't induce planning.** The agent found an alternative optimization path:
+- Became faster at executing its existing (myopic) strategy
+- Improved robustness/success rate through better reactive behavior
+- Did NOT develop chained distance computation
+
+This is a significant negative result: **pure environment difficulty is not sufficient to induce planning representations**. The RL objective (task success) can be satisfied without learning true planning capabilities. The network found a way to improve returns without developing the representations we hypothesized were necessary.
+
+---
+
+## Conclusion
+
+The DeepLTL agent exhibits exactly the pattern predicted by the "fake agents" hypothesis:
+
+| Capability | Result | Mechanism |
+|------------|--------|-----------|
+| Local planning (safety) | 80% success | Pattern recognition in observation |
+| Global planning (optimality) | 10% success | Would require world model |
+| Apparent optimal choices | Directional bias | Behavioral heuristic, not planning |
+| **After hard training** | **Still 80% myopic** | **Robustness improved, planning didn't** |
+
+**The agent has behavioral heuristics, not a world model.** Training on harder environments improves robustness but doesn't induce genuine planning capabilities. The network learns reactive patterns that look like planning for local tasks but fails when genuine multi-step reasoning is required - and this failure persists even after targeted training.
+
+---
+
+## Implications for Interpretability
+
+1. **Planning is not emergent from task success**: Even when optimal planning would help, RL finds alternative solutions
+2. **Representations must be explicitly incentivized**: Chained distances won't emerge just because they'd be useful
+3. **Behavioral testing alone is insufficient**: The agent improved on metrics (success rate, episode length) without developing the target capability
+
+### Potential Next Steps
+
+1. **Explicit auxiliary losses** for chained distance prediction
+2. **Path-length penalties** in the reward function (incentivize efficiency, not just success)
+3. **Architecture changes** that force distance computation through specific pathways
 
 ---
 
@@ -165,7 +228,15 @@ The DeepLTL agent exhibits exactly the pattern predicted by the "fake agents" hy
 | `paper_optimality_test.py` | Optimality planning test |
 | `paper_equidistant_test.py` | Equidistant control test |
 | `probe_planning_representations.py` | Probing infrastructure |
-| `investigate_world_model.py` | World model analysis |
-| `planning_taxonomy.py` | Planning capabilities taxonomy |
+| `planning_test_battery.py` | Local vs global planning test battery |
+| `run_hard_optimality.py` | Hard optimality training script |
 
-Results directories: `paper_safety_results/`, `paper_optimality_results/`, `equidistant_results/`, `probe_results_*/`
+### Hard Optimality Training Infrastructure
+
+| File | Purpose |
+|------|---------|
+| `src/envs/zones/safety-gymnasium/.../ltl_hard_optimality.py` | Hard map configurations |
+| `src/sequence/samplers/sequence_samplers.py` | Optimality task samplers |
+| `src/sequence/samplers/curriculum.py` | HARD_OPTIMALITY_CURRICULUM |
+
+Results directories: `paper_safety_results/`, `paper_optimality_results/`, `equidistant_results/`, `probe_results_*/`, `planning_battery_results/`, `planning_battery_results_after/`
