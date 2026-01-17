@@ -4,9 +4,12 @@
 
 ## Summary
 
-![Summary Figure](figures/summary_figure.png)
+| Planning Type | Task | Result | Mechanism |
+|--------------|------|--------|-----------|
+| **Local** (safety) | Choose unblocked goal | 80% correct | Pattern recognition |
+| **Global** (optimality) | Choose intermediate goal minimizing total path | 10% correct | Would require world model |
 
-We tested the DeepLTL agent on tasks requiring different types of planning. Our findings directly support the "fake agents" hypothesis: model-free RL agents learn reactive behavioral heuristics that succeed at **local planning** (sequential goal pursuit, pattern-based safety) but fail at **global planning** (choosing intermediate goals to minimize total path length).
+**Key finding**: The agent succeeds at local planning (reactive pattern matching) but fails at global planning (requires simulating future states). Probing confirms strong encoding of immediate features but weak encoding of computed/chained distances.
 
 ---
 
@@ -74,9 +77,7 @@ This requires simulating "if I go to blue1, where will I be, and how far to gree
 
 **Question**: Is the 10% optimal rate due to partial planning ability, or just coincidence?
 
-**Setup**: Both blues placed equidistant from the agent
-- If planning: agent should choose blue closer to green
-- If bias: agent should show consistent directional preference regardless of optimality
+**Setup**: Both blues placed equidistant from the agent. If the agent plans, it should choose blue closer to green. If it has a directional bias, it should show consistent preference regardless of optimality.
 
 ### Results
 
@@ -84,8 +85,6 @@ This requires simulating "if I go to blue1, where will I be, and how far to gree
 |--------------|----------------------|----------------|----------------|
 | Original | Lower-left | Upper-right (95%) | 5% |
 | Swapped (green moved) | Upper-right | Upper-right (95%) | 95% |
-
-![Equidistant Test Summary](figures/equidistant_summary.png)
 
 The agent goes upper-right ~95% of the time regardless of which blue is optimal. Any apparent "optimal" behavior is coincidental alignment with this directional bias, not planning.
 
@@ -95,23 +94,18 @@ The agent goes upper-right ~95% of the time regardless of which blue is optimal.
 
 We trained linear probes to decode information from model activations during task execution.
 
-### What the Agent DOES Encode (Strong)
+![Planning Performance](figures/planning_performance.png)
 
-| Feature | Best Layer | Performance |
-|---------|------------|-------------|
-| Distance to each zone | env_embedding | R² = 0.74-0.93 |
-| Blocking detection | env_embedding | 95% accuracy |
-| Current position | env_embedding | R² > 0.99 |
+![Probing Results](figures/probing_results.png)
 
-### What the Agent DOES NOT Encode (Weak)
+### What the Agent Encodes
 
-| Feature | Best Layer | Performance |
-|---------|------------|-------------|
-| Blue → Green distance | env_embedding | R² = 0.34-0.48 |
-| Total path via each blue | combined | R² = 0.36-0.51 |
-| Optimal blue choice | all layers | ~55% (near chance) |
-
-![Probing Heatmap](figures/probe_heatmap.png)
+| Feature | Performance | Interpretation |
+|---------|-------------|----------------|
+| Distance to each zone | R² = 0.74-0.93 | **Strong** - knows where things are |
+| Blocking detection | 95% accuracy | **Strong** - explains safety success |
+| Blue → Green distance | R² = 0.34-0.48 | **Weak** - doesn't compute |
+| Total path via each blue | R² = 0.36-0.51 | **Weak** - no chained distances |
 
 **Key Finding**: The model strongly encodes **immediate spatial features** (distances from self, blocking patterns) but weakly encodes **computed/relational features** (distances between other objects, chained path lengths).
 
@@ -139,11 +133,6 @@ Would need: "If I go to blue1, where will I be? From there, how far to green?"
 - **Requires**: Simulating state transitions, computing distances from hypothetical positions
 - **World model needed**: Yes
 
-The feedforward architecture cannot naturally:
-1. Simulate future states ("If I go to blue1, where will I be?")
-2. Compute distances from hypothetical positions
-3. Compare counterfactual outcomes
-
 ---
 
 ## Conclusion
@@ -157,13 +146,6 @@ The DeepLTL agent exhibits exactly the pattern predicted by the "fake agents" hy
 | Apparent optimal choices | Directional bias | Behavioral heuristic, not planning |
 
 **The agent has behavioral heuristics, not a world model.** It learns reactive patterns that look like planning for local tasks but fails when genuine multi-step reasoning (simulating futures, comparing counterfactuals) is required.
-
-### Probing Evidence Summary
-
-- **Strong encoding**: Immediate features (distances to zones, blocking)
-- **Weak encoding**: Computed features (chained distances, path comparisons)
-
-This confirms the architectural limitation: the model represents "what is" but not "what would be."
 
 ---
 
