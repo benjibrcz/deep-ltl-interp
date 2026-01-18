@@ -8,13 +8,13 @@ This report documents experiments testing whether the DeepLTL agent has learned 
 
 The paper establishes:
 
-**Theorem 2**: Depth-1 (myopic) goals provide NO information about transitions. An agent can succeed at "reach A or B" without any world model - just go to whichever seems easier.
+**Theorem 2**: Depth-1 (myopic) goals are compatible with many transition models. An agent can achieve myopic optimality without encoding a unique world model - success at "reach A or B" does not certify what the agent believes about transitions.
 
-**Theorem 1**: Depth-n goals (n>1) DO require a world model. To choose between sequences "A→C" vs "B→D", the agent must reason: "If I go to A first, can I then reach C?"
+**Theorem 1**: Depth-n goals (n>1) DO constrain the world model. To optimally choose between sequences "A→C" vs "B→D", the agent must reason about reachability: "If I go to A first, can I then reach C?"
 
-**Key Prediction**:
-- Depth-1: ~50% random choice (no planning signal)
-- Depth-2+: If agent has world model, choices should optimize for full sequence
+**Key Implication**:
+- Depth-1: Competence does not identify transitions (many models compatible)
+- Depth-2+: If agent has world model, choices should reflect it
 
 ## Corrected Experiments
 
@@ -31,7 +31,7 @@ The paper establishes:
 | Chose closer zone | 46% |
 | Chose farther zone | 54% |
 
-**Interpretation**: ~50% split confirms Theorem 2. At depth-1, the agent shows no planning - it essentially picks randomly between the two options. This is exactly what the paper predicts: myopic goals provide no information about transitions.
+**Interpretation**: In our symmetric setup (zones at varying distances, no obstacles), the agent's choices are near chance. This is consistent with Theorem 2: depth-1 disjunctions do not require a world model for competence, so observing ~50% here does not tell us whether the agent has one. The near-chance result reflects our symmetric setup, not a direct prediction of the theorem.
 
 ### Experiment 2: Sequential Goal Execution
 
@@ -89,9 +89,9 @@ This means we can't directly test whether the agent considers future consequence
 
 ## What We CAN Conclude
 
-### Confirmed: Theorem 2 (Myopic Goals)
+### Consistent with Theorem 2 (Myopic Goals)
 
-Depth-1 choices are ~50% random, exactly as predicted. No planning signal.
+Depth-1 choices are near chance in our symmetric setup. This is consistent with Theorem 2's claim that myopic competence does not identify transitions - but the ~50% is a property of our setup, not a direct prediction of the theorem.
 
 ### Confirmed: Agent Follows Sequential Goals
 
@@ -195,7 +195,7 @@ This suggests the lack of lookahead is a **fundamental property** of how the val
 
 | Test | Baseline | Combined | Interpretation |
 |------|----------|----------|----------------|
-| Depth-1 disjunctive | 46% closer | - | ~Random, confirms Theorem 2 |
+| Depth-1 disjunctive | 46% closer | - | Near chance (consistent with Thm 2) |
 | Sequential execution | 74% correct | - | Agent follows goals |
 | V prefers easier sequence | 61%, r=-0.27 | 58%, r=-0.22 | Weak correlation |
 | V anticipates (controlled) | 52% | 50.5% | Random - no anticipation |
