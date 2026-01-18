@@ -166,21 +166,48 @@ The 61% in Test A is explained by correlation: when the first step is easier, th
 
 This is evidence of **weak/limited lookahead**: the value function reflects mostly near-term difficulty, not future consequences.
 
+## Comparison: Baseline vs Planning-Incentivised Agent
+
+We compared the baseline agent (`planning_from_baseline`) against an agent trained with auxiliary planning heads (`combined_aux02_trans01`) that includes both:
+- **Auxiliary loss**: Predicts next propositions
+- **Transition loss**: Predicts state transitions
+
+### Results
+
+| Test | Baseline | Combined (aux + trans) |
+|------|----------|------------------------|
+| A: V prefers easier sequence | 61%, r=-0.27 | 58%, r=-0.22 |
+| B: V anticipates (controlled) | 52% | 50.5% |
+| C: Suffix ΔV discriminates | 52%, diff=0.0006 | 50.5%, diff=0.0008 |
+
+### Key Finding
+
+**The planning-incentivised training did not improve lookahead capability.**
+
+Both agents show:
+- Weak global correlation with full-sequence difficulty (~58-61%)
+- Essentially random (~50%) when first step is controlled
+- Near-zero marginal value difference (~0.0006-0.0008)
+
+This suggests the lack of lookahead is a **fundamental property** of how the value function is learned in this architecture, not something that auxiliary planning losses can fix. The auxiliary heads may help with other aspects (e.g., representation learning, sample efficiency), but they do not induce genuine multi-step anticipation in the value function.
+
 ## Summary
 
-| Test | Result | Interpretation |
-|------|--------|----------------|
-| Depth-1 disjunctive | 46% closer | ~Random, confirms Theorem 2 |
-| Sequential execution | 74% correct | Agent follows goals |
-| V prefers easier sequence | 61% | Weak correlation |
-| V anticipates (controlled) | 52% | Random - no anticipation |
-| Marginal ΔV discriminates | 52%, diff=0.0006 | First-step dominated |
+| Test | Baseline | Combined | Interpretation |
+|------|----------|----------|----------------|
+| Depth-1 disjunctive | 46% closer | - | ~Random, confirms Theorem 2 |
+| Sequential execution | 74% correct | - | Agent follows goals |
+| V prefers easier sequence | 61%, r=-0.27 | 58%, r=-0.22 | Weak correlation |
+| V anticipates (controlled) | 52% | 50.5% | Random - no anticipation |
+| Marginal ΔV discriminates | 52%, diff=0.0006 | 50.5%, diff=0.0008 | First-step dominated |
 
-**Conclusion**: The value function has weak global sensitivity to full-sequence difficulty (61%, r≈-0.27), but shows no reliable anticipation of the second step when the first target is controlled (52%). The marginal value test confirms the value is first-step dominated (ΔV diff = 0.0006).
+**Conclusion**: The value function has weak global sensitivity to full-sequence difficulty (~58-61%), but shows no reliable anticipation of the second step when the first target is controlled (~50-52%). The marginal value test confirms the value is first-step dominated (ΔV diff ≈ 0.0006-0.0008).
 
-This suggests either (i) the value head is dominated by near-term/first-step difficulty, or (ii) our Euclidean difficulty proxy is too noisy. But the near-zero marginal value difference strongly suggests (i).
+Critically, **planning-incentivised training (aux + transition losses) does not improve lookahead**. Both baseline and combined agents show identical patterns of first-step dominance.
 
-This is consistent with **reactive/myopic behavior** rather than genuine world model-based planning, though we cannot rule out that empirical success-based difficulty measures might reveal more lookahead.
+This suggests the lack of lookahead is a fundamental architectural property, not a training signal problem. The value function learns to reflect near-term difficulty regardless of auxiliary objectives.
+
+This is consistent with **reactive/myopic behavior** rather than genuine world model-based planning.
 
 ---
 
@@ -190,7 +217,8 @@ This is consistent with **reactive/myopic behavior** rather than genuine world m
 - `02_depth_sweep_test.py` - Original depth-sweep test (flawed methodology)
 - `03_corrected_depth_test.py` - Corrected experiments
 - `04_sequence_difficulty_test.py` - Sequence length/difficulty analysis
-- `results/` - JSON outputs
+- `05_value_function_planning_test.py` - Value function Tests A, B, C
+- `results/` - JSON outputs for both baseline and combined agents
 
 ## References
 
