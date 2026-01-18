@@ -16,7 +16,19 @@ The paper establishes:
 - Depth-1: Competence does not identify transitions (many models compatible)
 - Depth-2+: If agent has world model, choices should reflect it
 
+## Agent Verification
+
+Before presenting results, we verify the agent achieves expected training performance:
+
+| Agent | Curriculum Success | Random 2-Step Success |
+|-------|-------------------|----------------------|
+| `fresh_baseline` | **100%** (50/50) | **90%** (18/20) |
+
+This confirms the test infrastructure is working correctly and results below reflect genuine agent behavior, not test bugs.
+
 ## Corrected Experiments
+
+All experiments below use `fresh_baseline` with verified 90-100% task completion.
 
 ### Experiment 1: Depth-1 Disjunctive Test
 
@@ -24,12 +36,12 @@ The paper establishes:
 
 **Question**: Does agent prefer the closer zone?
 
-**Results** (100 episodes, all reached a zone):
+**Results** (99 episodes that reached a zone):
 
 | Metric | Result |
 |--------|--------|
-| Chose closer zone | 46% |
-| Chose farther zone | 54% |
+| Chose closer zone | 42.4% |
+| Chose farther zone | 57.6% |
 
 **Interpretation**: In our symmetric setup (zones at varying distances, no obstacles), the agent's choices are near chance. This is consistent with Theorem 2: depth-1 disjunctions do not require a world model for competence, so observing ~50% here does not tell us whether the agent has one. The near-chance result reflects our symmetric setup, not a direct prediction of the theorem.
 
@@ -39,39 +51,39 @@ The paper establishes:
 
 **Question**: Can the agent follow sequential goals?
 
-**Results** (100 episodes):
+**Results** (99 episodes that reached a zone):
 
 | Metric | Result |
 |--------|--------|
-| Reached correct first zone | 74% |
-| Went to wrong zone first | 26% |
+| Reached correct first zone | 84.8% |
+| Went to wrong zone first | 15.2% |
 
-**Interpretation**: The agent CAN follow sequential goals 74% of the time. The goal-conditioning is working. But this doesn't test planning - it just tests whether the agent responds to the current goal.
+**Interpretation**: The agent CAN follow sequential goals 84.8% of the time. The goal-conditioning is working. But this doesn't test planning - it just tests whether the agent responds to the current goal.
 
-### Experiment 3: Sequence Completion vs Length
+### Experiment 3: Sequence Completion on Random Maps
 
-**Goal**: Sequential goals of varying lengths
+**Goal**: Random 2-step sequences on random environment configurations
 
-**Results**:
+**Results** (20 episodes):
 
-| Sequence Length | Completion Rate |
-|-----------------|-----------------|
-| 1 zone | 46.7% |
-| 2 zones | 13.3% |
-| 3 zones | 13.3% |
+| Metric | Result |
+|--------|--------|
+| Completed (2/2) | 90% (18/20) |
+| Partial (1/2) | 5% (1/20) |
+| Failed (0/2) | 5% (1/20) |
 
-**Interpretation**: Completion drops sharply from 1→2 zones, then plateaus. The agent struggles with multi-step sequences, but this could be due to navigation difficulty rather than lack of planning.
+**Interpretation**: The agent successfully completes 90% of random 2-step sequences, matching expected training performance. This confirms the agent has learned effective goal-following behavior.
 
 ### Experiment 4: Does First Choice Optimize Full Path?
 
 **Setup**:
 - Two possible first zones (A or B)
-- Each leads to a different second zone
+- Each leads to different second zone
 - Total path lengths differ
 
 **Question**: Does the agent's first choice consider the FULL sequence?
 
-**Result**: 41% chose the zone leading to shorter total path (below random 50%)
+**Result**: 53% chose the zone leading to shorter total path (near chance)
 
 **Interpretation**: The agent does NOT optimize for full path length. But there's a methodological issue: the agent is given "reach A OR B" (depth-1), so it doesn't actually know about the second step. This test doesn't properly probe planning.
 
@@ -130,12 +142,15 @@ To truly test the paper's claims, we would need:
 
 These tests directly query the value function, which is how DeepLTL selects sequences.
 
+All tests use `fresh_baseline` (verified 100% curriculum success, 90% random 2-step success).
+
 ### Test A: Does V prefer easier full sequences?
 
 | Metric | Result |
 |--------|--------|
-| V(easy_seq) > V(hard_seq) | **61%** |
-| Correlation (length vs value) | **r = -0.27** |
+| V(easy_seq) > V(hard_seq) | **57.5%** |
+| Correlation (length vs value) | **r = -0.252** |
+| Episodes tested | 200 |
 
 Weak but statistically detectable preference for easier sequences.
 
@@ -143,7 +158,8 @@ Weak but statistically detectable preference for easier sequences.
 
 | Metric | Result |
 |--------|--------|
-| V higher for easier second | **52%** |
+| V higher for easier second | **52.0%** |
+| Episodes tested | 200 |
 
 Essentially random - no anticipation when first step is controlled.
 
@@ -153,16 +169,17 @@ Compute ΔV = V(s, [A,C]) - V(s, [A]) and compare for easy C vs hard C.
 
 | Metric | Result |
 |--------|--------|
-| ΔV higher for easy second | **52%** |
-| Mean ΔV (easy) | -0.2177 |
-| Mean ΔV (hard) | -0.2184 |
-| **Difference** | **0.0006** |
+| ΔV higher for easy second | **49.5%** |
+| Mean ΔV (easy) | -0.1850 |
+| Mean ΔV (hard) | -0.1875 |
+| **Difference** | **0.0026** |
+| Episodes tested | 200 |
 
 The marginal value of adding the second step is virtually identical regardless of whether it's easy or hard. This confirms the value function is **first-step dominated**.
 
 ### Interpretation
 
-The 61% in Test A is explained by correlation: when the first step is easier, the total sequence tends to be easier too. But when we control for the first step (Tests B & C), the value function shows **no discrimination** of second-step difficulty.
+The 57.5% in Test A is explained by correlation: when the first step is easier, the total sequence tends to be easier too. But when we control for the first step (Tests B & C), the value function shows **no discrimination** of second-step difficulty.
 
 This is evidence of **weak/limited lookahead**: the value function reflects mostly near-term difficulty, not future consequences.
 
@@ -193,17 +210,20 @@ This suggests the lack of lookahead is a **fundamental property** of how the val
 
 ## Summary
 
-| Test | Baseline | Combined | Interpretation |
-|------|----------|----------|----------------|
-| Depth-1 disjunctive | 46% closer | - | Near chance (consistent with Thm 2) |
-| Sequential execution | 74% correct | - | Agent follows goals |
-| V prefers easier sequence | 61%, r=-0.27 | 58%, r=-0.22 | Weak correlation |
-| V anticipates (controlled) | 52% | 50.5% | Random - no anticipation |
-| Marginal ΔV discriminates | 52%, diff=0.0006 | 50.5%, diff=0.0008 | First-step dominated |
+**Verified agent performance:** `fresh_baseline` achieves 100% curriculum success (50/50) and 90% random 2-step success (18/20).
 
-**Conclusion**: The value function has weak global sensitivity to full-sequence difficulty (~58-61%), but shows no reliable anticipation of the second step when the first target is controlled (~50-52%). The marginal value test confirms the value is first-step dominated (ΔV diff ≈ 0.0006-0.0008).
+| Test | fresh_baseline | planning_from_baseline | combined_aux02_trans01 | Interpretation |
+|------|----------------|------------------------|------------------------|----------------|
+| Depth-1 disjunctive | 42.4% closer | 46% closer | - | Near chance (consistent with Thm 2) |
+| Sequential execution | 84.8% correct | 74% correct | - | Agent follows goals |
+| 2-step completion (random) | **90%** | - | - | High success confirms test validity |
+| V prefers easier sequence | 57.5%, r=-0.25 | 61%, r=-0.27 | 58%, r=-0.22 | Weak correlation |
+| V anticipates (controlled) | 52% | 52% | 50.5% | Random - no anticipation |
+| Marginal ΔV discriminates | 49.5%, diff=0.003 | 52%, diff=0.0006 | 50.5%, diff=0.0008 | First-step dominated |
 
-Critically, **planning-incentivised training (aux + transition losses) does not improve lookahead**. Both baseline and combined agents show identical patterns of first-step dominance.
+**Conclusion**: The value function has weak global sensitivity to full-sequence difficulty (~57-61%), but shows no reliable anticipation of the second step when the first target is controlled (~50-52%). The marginal value test confirms the value is first-step dominated (ΔV diff ≈ 0.0006-0.003).
+
+Critically, **planning-incentivised training (aux + transition losses) does not improve lookahead**. All agents show identical patterns of first-step dominance.
 
 This suggests the lack of lookahead is a fundamental architectural property, not a training signal problem. The value function learns to reflect near-term difficulty regardless of auxiliary objectives.
 
@@ -215,10 +235,13 @@ This is consistent with **reactive/myopic behavior** rather than genuine world m
 
 - `01_extraction_algorithm.py` - Algorithm 2 implementation (original)
 - `02_depth_sweep_test.py` - Original depth-sweep test (flawed methodology)
-- `03_corrected_depth_test.py` - Corrected experiments
+- `03_corrected_depth_test.py` - Corrected experiments (Experiments 1-4)
 - `04_sequence_difficulty_test.py` - Sequence length/difficulty analysis
 - `05_value_function_planning_test.py` - Value function Tests A, B, C
-- `results/` - JSON outputs for both baseline and combined agents
+- `06_visualize_sequences.py` - Trajectory visualization
+- `07_random_sequence_test.py` - Random 2-step sequence execution test
+- `08_test_with_curriculum.py` - Curriculum sampler verification
+- `results/` - JSON outputs and trajectory visualizations
 
 ## References
 
