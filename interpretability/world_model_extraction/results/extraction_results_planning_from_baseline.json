@@ -1,0 +1,12 @@
+{
+  "exp_name": "planning_from_baseline",
+  "n_trials": 5,
+  "results": {
+    "blue_green": 0.1,
+    "blue_magenta": 0.1,
+    "blue_yellow": 0.7,
+    "green_magenta": 0.1,
+    "green_yellow": 0.7,
+    "magenta_yellow": 0.9
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "depth_1": {
+    "depth": 1,
+    "description": "Disjunctive: reach A OR reach B",
+    "chose_closer": 46,
+    "chose_farther": 54,
+    "neither": 0,
+    "total": 100
+  },
+  "depth_2": {
+    "depth": 2,
+    "description": "Sequential: reach A then B (full sequence)",
+    "chose_shorter_sequence": 74,
+    "chose_longer_sequence": 26,
+    "chose_closer_first": 41,
+    "chose_farther_first": 59,
+    "conflicts": 26,
+    "neither": 0,
+    "total": 100
+  },
+  "depth_2_planning": {
+    "depth": 2,
+    "description": "Disjunctive first step with sequential continuation",
+    "chose_shorter_total": 41,
+    "chose_longer_total": 58,
+    "closer_first_was_shorter": 75,
+    "closer_first_was_longer": 25,
+    "neither": 1,
+    "total": 100
+  }
+}

@@ -12,4 +12,20 @@ multiple_results/
 *.fish
 paper_utils
 ldba.png
+
+# macOS
+.DS_Store
+
+# Python
+.venv/
+*.pyc
+
+# Training logs
+*.log
+
+# Reference PDFs (not project output)
 Gmail - Update on DeepLTL.pdf
+general_agents_need_world_models.pdf
+
+# Generated probe results (large data)
+probe_results/

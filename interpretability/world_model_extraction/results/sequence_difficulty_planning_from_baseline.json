@@ -1,0 +1,20 @@
+{
+  "1": {
+    "length": 1,
+    "completion_rate": 0.4666666666666667,
+    "avg_steps": 311.0,
+    "avg_expected_length": 2.1991884643894357
+  },
+  "2": {
+    "length": 2,
+    "completion_rate": 0.13333333333333333,
+    "avg_steps": 391.76666666666665,
+    "avg_expected_length": 4.659817087916385
+  },
+  "3": {
+    "length": 3,
+    "completion_rate": 0.13333333333333333,
+    "avg_steps": 474.43333333333334,
+    "avg_expected_length": 6.800644757211018
+  }
+}
