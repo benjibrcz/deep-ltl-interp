@@ -34,6 +34,14 @@ class Trainer:
         # For fine-tuning from another experiment
         self.from_exp = getattr(args, 'from_exp', None)
         self.from_seed = getattr(args, 'from_seed', 0)
+        # Path efficiency incentive
+        self.step_penalty = getattr(args, 'step_penalty', 0.0)
+        # Auxiliary prediction loss
+        self.aux_loss_coef = getattr(args, 'aux_loss_coef', 0.0)
+        self.use_aux_head = getattr(args, 'use_aux_head', False) or self.aux_loss_coef > 0
+        # Transition prediction loss
+        self.transition_loss_coef = getattr(args, 'transition_loss_coef', 0.0)
+        self.use_transition_head = getattr(args, 'use_transition_head', False) or self.transition_loss_coef > 0
 
     def train(self, log_csv: bool = True, log_wandb: bool = False):
         training_status, resuming = self.get_training_status()
@@ -51,10 +59,14 @@ class Trainer:
             print(f'Number of assignments: {len(assignments)}')
             preprocessing.init_vocab(assignments)
             self.model_store.save_vocab()
-        model = build_model(envs[0], training_status, model_configs[self.args.model_config])
+        model = build_model(envs[0], training_status, model_configs[self.args.model_config],
+                           use_aux_head=self.use_aux_head,
+                           use_transition_head=self.use_transition_head)
         model.to(self.args.experiment.device)
         algo = torch_ac.PPO(envs, model, self.args.experiment.device, self.args.ppo,
-                            preprocess_obss=preprocessing.preprocess_obss, parallel=False)
+                            preprocess_obss=preprocessing.preprocess_obss, parallel=False,
+                            aux_loss_coef=self.aux_loss_coef,
+                            transition_loss_coef=self.transition_loss_coef)
         if "optimizer_state" in training_status:
             algo.optimizer.load_state_dict(training_status["optimizer_state"])
             self.text_logger.info("Loaded optimizer from existing run.")
@@ -109,7 +121,8 @@ class Trainer:
             curriculum.stage_index = curriculum_stage
             self.text_logger.important_info(f"Curriculum stage: {curriculum.stage_index}")
             sampler = CurriculumSampler.partial(curriculum)
-            envs.append(make_env(self.args.experiment.env, sampler, sequence=True))
+            envs.append(make_env(self.args.experiment.env, sampler, sequence=True,
+                                step_penalty=self.step_penalty))
         # Set different seeds for each environment. The seed offset is used to ensure that the seeds do not overlap.
         seed_offset = 100 * self.args.experiment.seed
         seeds = [seed_offset + i for i in range(self.args.experiment.num_procs)]
@@ -188,6 +201,19 @@ def parse_arguments() -> argparse.Namespace:
                         help='Name of experiment to load model weights from (for fine-tuning)')
     parser.add_argument('--from_seed', type=int, default=0,
                         help='Seed of the model to load from (for fine-tuning)')
+    # Path efficiency incentive
+    parser.add_argument('--step_penalty', type=float, default=0.0,
+                        help='Penalty per step to incentivize shorter paths (e.g., 0.001)')
+    # Auxiliary prediction loss
+    parser.add_argument('--aux_loss_coef', type=float, default=0.0,
+                        help='Coefficient for auxiliary chained distance prediction loss (e.g., 0.1)')
+    parser.add_argument('--use_aux_head', action='store_true',
+                        help='Add auxiliary prediction head to model (auto-enabled if aux_loss_coef > 0)')
+    # Transition prediction loss
+    parser.add_argument('--transition_loss_coef', type=float, default=0.0,
+                        help='Coefficient for transition prediction loss (e.g., 0.1)')
+    parser.add_argument('--use_transition_head', action='store_true',
+                        help='Add transition prediction head to model (auto-enabled if transition_loss_coef > 0)')
     args = parser.parse_args()
 
     if args.experiment.device == 'gpu':

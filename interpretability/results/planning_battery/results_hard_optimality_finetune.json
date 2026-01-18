@@ -1,0 +1,29 @@
+{
+  "local_summary": {
+    "category": "local",
+    "n_total": 40,
+    "success_rate": 1.0,
+    "optimal_rate": 0.2,
+    "myopic_rate": 0.8,
+    "mean_efficiency": 0.6200146448743513,
+    "std_efficiency": 0.2516828118054508
+  },
+  "global_summary": {
+    "category": "global",
+    "n_total": 60,
+    "success_rate": 1.0,
+    "optimal_rate": 0.2,
+    "myopic_rate": 0.8,
+    "mean_efficiency": 0.6200220900854139,
+    "std_efficiency": 0.25168156329822794
+  },
+  "overall_summary": {
+    "category": "all",
+    "n_total": 100,
+    "success_rate": 1.0,
+    "optimal_rate": 0.2,
+    "myopic_rate": 0.8,
+    "mean_efficiency": 0.6200191120009889,
+    "std_efficiency": 0.25168206272828936
+  }
+}
