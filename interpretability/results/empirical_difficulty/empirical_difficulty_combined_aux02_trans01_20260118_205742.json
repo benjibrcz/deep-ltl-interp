@@ -1,0 +1,4534 @@
+{
+  "args": {
+    "exp": "combined_aux02_trans01",
+    "n_configs": 50,
+    "n_difficulty_rollouts": 15,
+    "seed": 42,
+    "output_dir": "interpretability/results/empirical_difficulty"
+  },
+  "timestamp": "20260118_205742",
+  "optvar": {
+    "results": [
+      {
+        "config_id": 0,
+        "int_color": "magenta",
+        "goal_color": "green",
+        "layout_seed": 42,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 196.33333333333334,
+            "std_steps": 48.95632974623631,
+            "n_completions": 4,
+            "position": [
+              0.5288994586534113,
+              1.2447830443401988
+            ],
+            "geometric_total": 4.379396318441197,
+            "d_agent": 1.1464704584818488,
+            "d_goal": 3.232925859959348
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 136.4,
+            "std_steps": 26.34084281111749,
+            "n_completions": 5,
+            "position": [
+              -0.4782073559914884,
+              -0.8381423532711818
+            ],
+            "geometric_total": 2.228493816677422,
+            "d_agent": 1.1795267097987523,
+            "d_goal": 1.04896710687867
+          },
+          "empirically_easier": "magenta_zone1",
+          "difficulty_diff": 0.06666666666666665,
+          "steps_diff": 59.93333333333334,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone1",
+          "success": true,
+          "steps": 115
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 1,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 49,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 190.9,
+            "std_steps": 39.68992315437257,
+            "n_completions": 5,
+            "position": [
+              0.5178360444938999,
+              -0.9603352966313319
+            ],
+            "geometric_total": 4.131160655541451,
+            "d_agent": 0.9152269652860051,
+            "d_goal": 3.2159336902554454
+          },
+          "blue_zone1": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 97.75,
+            "std_steps": 3.491060010942235,
+            "n_completions": 4,
+            "position": [
+              -0.542748229383175,
+              0.9023317222711138
+            ],
+            "geometric_total": 2.404008088413823,
+            "d_agent": 1.2600795784152468,
+            "d_goal": 1.1439285099985765
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.06666666666666665,
+          "steps_diff": 93.15,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": false,
+          "steps": 186
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 2,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 56,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 194.9090909090909,
+            "std_steps": 27.737256026882445,
+            "n_completions": 5,
+            "position": [
+              0.6243456907599443,
+              1.0364268818856486
+            ],
+            "geometric_total": 4.676832989642481,
+            "d_agent": 1.1682313261120467,
+            "d_goal": 3.508601663530434
+          },
+          "blue_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 99.2,
+            "std_steps": 8.541662601625049,
+            "n_completions": 5,
+            "position": [
+              -1.1791550018756816,
+              -0.6416363225781456
+            ],
+            "geometric_total": 2.346455891510257,
+            "d_agent": 1.3010473229145276,
+            "d_goal": 1.0454085685957293
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.0,
+          "steps_diff": 95.7090909090909,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 91
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 3,
+        "int_color": "magenta",
+        "goal_color": "yellow",
+        "layout_seed": 63,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.0,
+            "mean_steps": 166.66666666666666,
+            "std_steps": 9.030811456096044,
+            "n_completions": 0,
+            "position": [
+              -0.5599795202608476,
+              -0.3968477296164997
+            ],
+            "geometric_total": 3.8933784682769486,
+            "d_agent": 0.829539702908426,
+            "d_goal": 3.0638387653685224
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 114.7,
+            "std_steps": 40.57597811513606,
+            "n_completions": 10,
+            "position": [
+              1.2612321922176943,
+              0.40791024266819587
+            ],
+            "geometric_total": 2.2464949715948705,
+            "d_agent": 1.1675667610852833,
+            "d_goal": 1.0789282105095872
+          },
+          "empirically_easier": "magenta_zone1",
+          "difficulty_diff": 0.6666666666666666,
+          "steps_diff": 51.966666666666654,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone1",
+          "success": true,
+          "steps": 103
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 4,
+        "int_color": "green",
+        "goal_color": "yellow",
+        "layout_seed": 70,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 266.9,
+            "std_steps": 64.02257414381273,
+            "n_completions": 10,
+            "position": [
+              0.8682336987575512,
+              0.9807084811031193
+            ],
+            "geometric_total": 4.245793574840382,
+            "d_agent": 0.9734803859840143,
+            "d_goal": 3.272313188856368
+          },
+          "green_zone1": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 101.0,
+            "std_steps": 2.9154759474226504,
+            "n_completions": 4,
+            "position": [
+              -1.02404738245528,
+              -0.20314690539422023
+            ],
+            "geometric_total": 2.410849016538758,
+            "d_agent": 1.3497264693117876,
+            "d_goal": 1.0611225472269705
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.39999999999999997,
+          "steps_diff": 165.89999999999998,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 213
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 5,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 77,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.8666666666666667,
+            "mean_steps": 243.0,
+            "std_steps": 49.94458467603408,
+            "n_completions": 13,
+            "position": [
+              0.5282966455615911,
+              0.9901928164072745
+            ],
+            "geometric_total": 4.179378434051408,
+            "d_agent": 0.8955925374994927,
+            "d_goal": 3.2837858965519153
+          },
+          "green_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 500,
+            "std_steps": 0,
+            "n_completions": 0,
+            "position": [
+              -0.6892957922926225,
+              -0.7199619557223144
+            ],
+            "geometric_total": 2.3884458917828284,
+            "d_agent": 1.203976202961793,
+            "d_goal": 1.1844696888210353
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.8666666666666667,
+          "steps_diff": 257.0,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 225
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 6,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 84,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 231.46666666666667,
+            "std_steps": 45.514637450189824,
+            "n_completions": 6,
+            "position": [
+              -0.9603281996927304,
+              0.18122150378497204
+            ],
+            "geometric_total": 4.437500956651853,
+            "d_agent": 1.0521525076954286,
+            "d_goal": 3.385348448956424
+          },
+          "green_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 178.33333333333334,
+            "std_steps": 87.36640595153773,
+            "n_completions": 3,
+            "position": [
+              1.2369847265205967,
+              -0.616043420134788
+            ],
+            "geometric_total": 2.345037054119323,
+            "d_agent": 1.2958648017118937,
+            "d_goal": 1.0491722524074292
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.2,
+          "steps_diff": 53.133333333333326,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": false,
+          "steps": 198
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 7,
+        "int_color": "blue",
+        "goal_color": "magenta",
+        "layout_seed": 91,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 186.0,
+            "std_steps": 0,
+            "n_completions": 1,
+            "position": [
+              -0.9015904097231713,
+              0.6680754330873458
+            ],
+            "geometric_total": 4.175609440500715,
+            "d_agent": 1.0312325469434607,
+            "d_goal": 3.1443768935572542
+          },
+          "blue_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 99.8,
+            "std_steps": 25.748009631814263,
+            "n_completions": 5,
+            "position": [
+              0.2113906980353564,
+              -1.2273138484128772
+            ],
+            "geometric_total": 2.1772251231979602,
+            "d_agent": 1.1758138466022332,
+            "d_goal": 1.0014112765957273
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.26666666666666666,
+          "steps_diff": 86.2,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 94
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 8,
+        "int_color": "magenta",
+        "goal_color": "yellow",
+        "layout_seed": 98,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 310.0,
+            "std_steps": 52.91975056630558,
+            "n_completions": 4,
+            "position": [
+              -0.36466743224860954,
+              1.0223922306266962
+            ],
+            "geometric_total": 4.203574992843951,
+            "d_agent": 0.9414305852176096,
+            "d_goal": 3.2621444076263413
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.5333333333333333,
+            "mean_steps": 114.125,
+            "std_steps": 13.280036709286613,
+            "n_completions": 8,
+            "position": [
+              0.8798495476132653,
+              -0.9680943854249916
+            ],
+            "geometric_total": 2.4470530049616204,
+            "d_agent": 1.4087379579586552,
+            "d_goal": 1.0383150470029652
+          },
+          "empirically_easier": "magenta_zone1",
+          "difficulty_diff": 0.26666666666666666,
+          "steps_diff": 195.875,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone1",
+          "success": true,
+          "steps": 104
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 9,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 105,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 240.63636363636363,
+            "std_steps": 66.00863955474138,
+            "n_completions": 1,
+            "position": [
+              -0.9429612687149388,
+              -0.7324082148292854
+            ],
+            "geometric_total": 4.1514036519209565,
+            "d_agent": 0.9462122103211804,
+            "d_goal": 3.205191441599776
+          },
+          "blue_zone1": {
+            "completion_rate": 0.4,
+            "mean_steps": 94.66666666666667,
+            "std_steps": 2.8674417556808756,
+            "n_completions": 6,
+            "position": [
+              0.9921206111584595,
+              0.49451008963660253
+            ],
+            "geometric_total": 2.3594250361615368,
+            "d_agent": 1.3499142382007547,
+            "d_goal": 1.0095107979607822
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.33333333333333337,
+          "steps_diff": 145.96969696969694,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 97
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 10,
+        "int_color": "magenta",
+        "goal_color": "green",
+        "layout_seed": 112,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 207.46153846153845,
+            "std_steps": 66.97486943693639,
+            "n_completions": 6,
+            "position": [
+              -0.1368845705656432,
+              0.7431298985691611
+            ],
+            "geometric_total": 3.8198722373412126,
+            "d_agent": 0.853673187410067,
+            "d_goal": 2.9661990499311455
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 118.0,
+            "std_steps": 0,
+            "n_completions": 1,
+            "position": [
+              -0.7073791097706862,
+              -1.0936182125661063
+            ],
+            "geometric_total": 2.209958468757327,
+            "d_agent": 1.1062798449396674,
+            "d_goal": 1.1036786238176597
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.33333333333333337,
+          "steps_diff": 89.46153846153845,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone1",
+          "success": true,
+          "steps": 115
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 11,
+        "int_color": "magenta",
+        "goal_color": "yellow",
+        "layout_seed": 119,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.0,
+            "mean_steps": 210.0,
+            "std_steps": 0,
+            "n_completions": 0,
+            "position": [
+              0.6497930774183724,
+              1.0402295708026483
+            ],
+            "geometric_total": 4.520865984484416,
+            "d_agent": 1.151963307830372,
+            "d_goal": 3.3689026766540446
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.8666666666666667,
+            "mean_steps": 108.38461538461539,
+            "std_steps": 13.505203906064457,
+            "n_completions": 13,
+            "position": [
+              -0.29346543650290907,
+              -1.0993759558919896
+            ],
+            "geometric_total": 2.2882303937248176,
+            "d_agent": 1.1874045435397274,
+            "d_goal": 1.1008258501850905
+          },
+          "empirically_easier": "magenta_zone1",
+          "difficulty_diff": 0.8666666666666667,
+          "steps_diff": 101.61538461538461,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": false,
+          "steps": 184
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 12,
+        "int_color": "yellow",
+        "goal_color": "magenta",
+        "layout_seed": 126,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.2,
+            "mean_steps": 241.0,
+            "std_steps": 43.97954069791998,
+            "n_completions": 3,
+            "position": [
+              0.8753223456849601,
+              -0.32510313079252506
+            ],
+            "geometric_total": 4.014348873296578,
+            "d_agent": 0.9937869712297568,
+            "d_goal": 3.0205619020668215
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.4,
+            "mean_steps": 121.0,
+            "std_steps": 20.174241001832016,
+            "n_completions": 6,
+            "position": [
+              -0.37772373762396755,
+              1.217115526031522
+            ],
+            "geometric_total": 2.1137072214965467,
+            "d_agent": 1.0777579862741429,
+            "d_goal": 1.0359492352224038
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.2,
+          "steps_diff": 120.0,
+          "geometrically_easier": "yellow_zone1"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 93
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 13,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 133,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.2,
+            "mean_steps": 249.25,
+            "std_steps": 61.67404235170579,
+            "n_completions": 3,
+            "position": [
+              -0.50324830868884,
+              1.0614416983662287
+            ],
+            "geometric_total": 4.444065799492227,
+            "d_agent": 1.0836439246712162,
+            "d_goal": 3.360421874821011
+          },
+          "blue_zone1": {
+            "completion_rate": 0.8,
+            "mean_steps": 94.58333333333333,
+            "std_steps": 6.047841671942883,
+            "n_completions": 12,
+            "position": [
+              0.6264711762404774,
+              -0.9134090312533977
+            ],
+            "geometric_total": 2.3223825153516797,
+            "d_agent": 1.228417742382295,
+            "d_goal": 1.0939647729693847
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.6000000000000001,
+          "steps_diff": 154.66666666666669,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 90
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 14,
+        "int_color": "magenta",
+        "goal_color": "blue",
+        "layout_seed": 140,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 209.6,
+            "std_steps": 66.8,
+            "n_completions": 6,
+            "position": [
+              -0.536025862914013,
+              -0.6506462316869066
+            ],
+            "geometric_total": 3.686100474990196,
+            "d_agent": 0.8077480949616056,
+            "d_goal": 2.878352380028591
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 86.25,
+            "std_steps": 5.0682837331783235,
+            "n_completions": 4,
+            "position": [
+              0.9053021313407106,
+              0.5132063690141117
+            ],
+            "geometric_total": 2.077728838375532,
+            "d_agent": 1.0516524116349466,
+            "d_goal": 1.0260764267405855
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.13333333333333336,
+          "steps_diff": 123.35,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": false,
+          "steps": 176
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 15,
+        "int_color": "yellow",
+        "goal_color": "blue",
+        "layout_seed": 147,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 187.6,
+            "std_steps": 40.775482829759355,
+            "n_completions": 1,
+            "position": [
+              1.194858374921464,
+              -0.30221290186901606
+            ],
+            "geometric_total": 4.251479859451633,
+            "d_agent": 0.9374537714596617,
+            "d_goal": 3.3140260879919716
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 104.8,
+            "std_steps": 14.218298069740978,
+            "n_completions": 5,
+            "position": [
+              -1.0439883874637468,
+              -0.360054306414274
+            ],
+            "geometric_total": 2.4034304165714135,
+            "d_agent": 1.3128834819879378,
+            "d_goal": 1.0905469345834757
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.26666666666666666,
+          "steps_diff": 82.8,
+          "geometrically_easier": "yellow_zone1"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone0",
+          "success": false,
+          "steps": 164
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 16,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 154,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 249.2,
+            "std_steps": 128.3018316315087,
+            "n_completions": 1,
+            "position": [
+              0.6389374746477983,
+              -0.6306170121663122
+            ],
+            "geometric_total": 4.445683027771645,
+            "d_agent": 1.0439001806111226,
+            "d_goal": 3.401782847160523
+          },
+          "blue_zone1": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 105.0,
+            "std_steps": 15.137465347370977,
+            "n_completions": 7,
+            "position": [
+              -0.5736701036951768,
+              1.4770970188350296
+            ],
+            "geometric_total": 2.405815856444928,
+            "d_agent": 1.3921873848251711,
+            "d_goal": 1.0136284716197566
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.4,
+          "steps_diff": 144.2,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": false,
+          "steps": 168
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 17,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 161,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 192.5,
+            "std_steps": 56.9166056612655,
+            "n_completions": 1,
+            "position": [
+              0.8551198008319516,
+              0.33040828752351664
+            ],
+            "geometric_total": 4.574663947872695,
+            "d_agent": 1.1624713912381708,
+            "d_goal": 3.412192556634524
+          },
+          "blue_zone1": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 108.4,
+            "std_steps": 27.904121559368253,
+            "n_completions": 10,
+            "position": [
+              -1.346459429551741,
+              -0.481689362223346
+            ],
+            "geometric_total": 2.339941306635895,
+            "d_agent": 1.2312729606966903,
+            "d_goal": 1.1086683459392046
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.6,
+          "steps_diff": 84.1,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": false,
+          "steps": 500
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 18,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 168,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 290.3,
+            "std_steps": 65.89696502874772,
+            "n_completions": 6,
+            "position": [
+              -0.23847302358643824,
+              -1.1728626366736694
+            ],
+            "geometric_total": 4.419939495221719,
+            "d_agent": 1.0654655736531615,
+            "d_goal": 3.3544739215685575
+          },
+          "blue_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 500,
+            "std_steps": 0,
+            "n_completions": 0,
+            "position": [
+              -0.9686338212905573,
+              1.0819178175482047
+            ],
+            "geometric_total": 2.4528230042125956,
+            "d_agent": 1.4002169929595971,
+            "d_goal": 1.0526060112529985
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.4,
+          "steps_diff": 209.7,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 234
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 19,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 175,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 305.3076923076923,
+            "std_steps": 121.64411182144578,
+            "n_completions": 10,
+            "position": [
+              1.0542448386522338,
+              0.15201545864569743
+            ],
+            "geometric_total": 4.018206589928421,
+            "d_agent": 0.9206611172762786,
+            "d_goal": 3.097545472652142
+          },
+          "green_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 134.5,
+            "std_steps": 40.5,
+            "n_completions": 2,
+            "position": [
+              -0.7304847027748776,
+              -0.8515592515766157
+            ],
+            "geometric_total": 2.298267668396675,
+            "d_agent": 1.1562980385162498,
+            "d_goal": 1.1419696298804252
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.5333333333333333,
+          "steps_diff": 170.80769230769232,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": false,
+          "steps": 239
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 20,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 182,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 265.9166666666667,
+            "std_steps": 114.09240285351558,
+            "n_completions": 10,
+            "position": [
+              0.8155988933580149,
+              0.6418858450677386
+            ],
+            "geometric_total": 4.131358069171839,
+            "d_agent": 0.946356230336932,
+            "d_goal": 3.185001838834906
+          },
+          "green_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 95.33333333333333,
+            "std_steps": 2.0548046676563256,
+            "n_completions": 3,
+            "position": [
+              -0.6106914498885968,
+              -0.8905462403984726
+            ],
+            "geometric_total": 2.2692396580772503,
+            "d_agent": 1.1623949047079754,
+            "d_goal": 1.1068447533692751
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.4666666666666666,
+          "steps_diff": 170.58333333333337,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 277
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 21,
+        "int_color": "yellow",
+        "goal_color": "magenta",
+        "layout_seed": 189,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 205.0,
+            "std_steps": 17.95828499606797,
+            "n_completions": 4,
+            "position": [
+              0.9253311208765976,
+              -0.4944192150476974
+            ],
+            "geometric_total": 4.1409922178513785,
+            "d_agent": 0.9675554720474956,
+            "d_goal": 3.173436745803883
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.8,
+            "mean_steps": 136.16666666666666,
+            "std_steps": 41.736940738657665,
+            "n_completions": 12,
+            "position": [
+              0.0370873872619758,
+              1.3543408412788631
+            ],
+            "geometric_total": 2.3819972254639477,
+            "d_agent": 1.2259005231030984,
+            "d_goal": 1.1560967023608493
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.5333333333333334,
+          "steps_diff": 68.83333333333334,
+          "geometrically_easier": "yellow_zone1"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 114
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 22,
+        "int_color": "magenta",
+        "goal_color": "blue",
+        "layout_seed": 196,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 309.9230769230769,
+            "std_steps": 85.26110262776206,
+            "n_completions": 6,
+            "position": [
+              0.5280177002065893,
+              0.5787430255631331
+            ],
+            "geometric_total": 4.011006517539532,
+            "d_agent": 0.8607916084156898,
+            "d_goal": 3.150214909123842
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 500,
+            "std_steps": 0,
+            "n_completions": 0,
+            "position": [
+              -0.6100996378908246,
+              -1.1353917871876131
+            ],
+            "geometric_total": 2.367736577913959,
+            "d_agent": 1.2237804138655275,
+            "d_goal": 1.143956164048432
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.4,
+          "steps_diff": 190.0769230769231,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": false,
+          "steps": 500
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 23,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 203,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.0,
+            "mean_steps": 165.88888888888889,
+            "std_steps": 6.590303389483074,
+            "n_completions": 0,
+            "position": [
+              -0.8760684527960966,
+              -0.9735790095110367
+            ],
+            "geometric_total": 4.743742821646015,
+            "d_agent": 1.1875858104662775,
+            "d_goal": 3.556157011179738
+          },
+          "blue_zone1": {
+            "completion_rate": 0.5333333333333333,
+            "mean_steps": 96.75,
+            "std_steps": 5.673402858955108,
+            "n_completions": 8,
+            "position": [
+              0.6794738300737353,
+              1.0545455591747501
+            ],
+            "geometric_total": 2.370649606381482,
+            "d_agent": 1.3690692318581512,
+            "d_goal": 1.0015803745233312
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.5333333333333333,
+          "steps_diff": 69.13888888888889,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": false,
+          "steps": 162
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 24,
+        "int_color": "yellow",
+        "goal_color": "magenta",
+        "layout_seed": 210,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 381.44444444444446,
+            "std_steps": 116.37116014537385,
+            "n_completions": 6,
+            "position": [
+              -0.5206719624927473,
+              -0.9062350606987627
+            ],
+            "geometric_total": 4.615758513026147,
+            "d_agent": 1.1507705688195486,
+            "d_goal": 3.464987944206599
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 116.57142857142857,
+            "std_steps": 33.79711375190467,
+            "n_completions": 7,
+            "position": [
+              0.23171048308117448,
+              1.3303329685305458
+            ],
+            "geometric_total": 2.3875446184562295,
+            "d_agent": 1.2173167874430904,
+            "d_goal": 1.1702278310131389
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.06666666666666665,
+          "steps_diff": 264.8730158730159,
+          "geometrically_easier": "yellow_zone1"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 99
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 25,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 217,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.7333333333333333,
+            "mean_steps": 304.93333333333334,
+            "std_steps": 77.88407339686907,
+            "n_completions": 11,
+            "position": [
+              0.4763895410980426,
+              1.0092420718125157
+            ],
+            "geometric_total": 4.4795759786227105,
+            "d_agent": 1.1286979681518985,
+            "d_goal": 3.350878010470812
+          },
+          "green_zone1": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 95.0,
+            "std_steps": 0,
+            "n_completions": 1,
+            "position": [
+              -1.0640359737003235,
+              -0.8838159288357663
+            ],
+            "geometric_total": 2.3686627721129527,
+            "d_agent": 1.3126535321735209,
+            "d_goal": 1.056009239939432
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.6666666666666666,
+          "steps_diff": 209.93333333333334,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 331
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 26,
+        "int_color": "magenta",
+        "goal_color": "yellow",
+        "layout_seed": 224,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 184.5,
+            "std_steps": 27.07858932810201,
+            "n_completions": 1,
+            "position": [
+              -0.55588332818265,
+              -0.7978015430472556
+            ],
+            "geometric_total": 4.193886132819376,
+            "d_agent": 1.0300498598965946,
+            "d_goal": 3.163836272922781
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.8666666666666667,
+            "mean_steps": 105.76923076923077,
+            "std_steps": 7.90475850994777,
+            "n_completions": 13,
+            "position": [
+              1.2980011616479692,
+              0.39507342267278855
+            ],
+            "geometric_total": 2.272189003498923,
+            "d_agent": 1.2586119807109963,
+            "d_goal": 1.0135770227879264
+          },
+          "empirically_easier": "magenta_zone1",
+          "difficulty_diff": 0.8,
+          "steps_diff": 78.73076923076923,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": false,
+          "steps": 171
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 27,
+        "int_color": "magenta",
+        "goal_color": "green",
+        "layout_seed": 231,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.0,
+            "mean_steps": 242.8,
+            "std_steps": 71.9918513907419,
+            "n_completions": 0,
+            "position": [
+              -0.6576038514813123,
+              0.43985429998512404
+            ],
+            "geometric_total": 4.295726410976107,
+            "d_agent": 0.9501399624603141,
+            "d_goal": 3.3455864485157925
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 500,
+            "std_steps": 0,
+            "n_completions": 0,
+            "position": [
+              1.0454895698999782,
+              -1.2072300861999627
+            ],
+            "geometric_total": 2.4798159672926245,
+            "d_agent": 1.4337062488031982,
+            "d_goal": 1.0461097184894264
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.0,
+          "steps_diff": 257.2,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": false,
+          "steps": 275
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 28,
+        "int_color": "magenta",
+        "goal_color": "yellow",
+        "layout_seed": 238,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 164.77777777777777,
+            "std_steps": 7.420359047584,
+            "n_completions": 2,
+            "position": [
+              -0.7019480191743185,
+              -0.9558155319292478
+            ],
+            "geometric_total": 3.8082708233344933,
+            "d_agent": 0.8400909861364259,
+            "d_goal": 2.9681798371980674
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 96.0,
+            "std_steps": 0,
+            "n_completions": 1,
+            "position": [
+              -0.2901127741185599,
+              0.9330146216855255
+            ],
+            "geometric_total": 2.263096486106646,
+            "d_agent": 1.163565742997324,
+            "d_goal": 1.099530743109322
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.06666666666666667,
+          "steps_diff": 68.77777777777777,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": false,
+          "steps": 154
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 29,
+        "int_color": "yellow",
+        "goal_color": "magenta",
+        "layout_seed": 245,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 249.57142857142858,
+            "std_steps": 20.091626847713332,
+            "n_completions": 7,
+            "position": [
+              -0.4057160284483682,
+              -0.8032354633382973
+            ],
+            "geometric_total": 4.249641216673484,
+            "d_agent": 1.0319156610050981,
+            "d_goal": 3.2177255556683857
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 125.0,
+            "std_steps": 33.39803244846276,
+            "n_completions": 7,
+            "position": [
+              0.4895518859209565,
+              1.3310510806558773
+            ],
+            "geometric_total": 2.319005244854388,
+            "d_agent": 1.2865364182876469,
+            "d_goal": 1.0324688265667412
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.0,
+          "steps_diff": 124.57142857142858,
+          "geometrically_easier": "yellow_zone1"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 93
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 30,
+        "int_color": "yellow",
+        "goal_color": "blue",
+        "layout_seed": 252,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 363.35714285714283,
+            "std_steps": 90.54959741399591,
+            "n_completions": 7,
+            "position": [
+              1.376965322273256,
+              -0.3799237058721697
+            ],
+            "geometric_total": 4.524716697026021,
+            "d_agent": 1.166744405150539,
+            "d_goal": 3.3579722918754813
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 257.5,
+            "std_steps": 163.5,
+            "n_completions": 2,
+            "position": [
+              -0.9568909531745178,
+              -0.04317766135534181
+            ],
+            "geometric_total": 2.222684659495317,
+            "d_agent": 1.1912976736422938,
+            "d_goal": 1.0313869858530231
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.33333333333333337,
+          "steps_diff": 105.85714285714283,
+          "geometrically_easier": "yellow_zone1"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone0",
+          "success": true,
+          "steps": 207
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 31,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 259,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 200.28571428571428,
+            "std_steps": 23.27914017628097,
+            "n_completions": 7,
+            "position": [
+              -1.2683148838619602,
+              0.04791087358496195
+            ],
+            "geometric_total": 4.259141982620655,
+            "d_agent": 1.0137794022880615,
+            "d_goal": 3.2453625803325936
+          },
+          "green_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 95.0,
+            "std_steps": 3.0,
+            "n_completions": 2,
+            "position": [
+              0.9210249259735765,
+              0.5311183941692549
+            ],
+            "geometric_total": 2.354545067723275,
+            "d_agent": 1.2894315251199382,
+            "d_goal": 1.065113542603337
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.33333333333333337,
+          "steps_diff": 105.28571428571428,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 181
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 32,
+        "int_color": "yellow",
+        "goal_color": "green",
+        "layout_seed": 266,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 198.0,
+            "std_steps": 32.47768464653846,
+            "n_completions": 2,
+            "position": [
+              0.3327902132394649,
+              0.9206343587115393
+            ],
+            "geometric_total": 4.421510109906465,
+            "d_agent": 1.1071912951266003,
+            "d_goal": 3.3143188147798646
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.6,
+            "mean_steps": 92.66666666666667,
+            "std_steps": 7.241853660800143,
+            "n_completions": 9,
+            "position": [
+              -0.34056308424454435,
+              -1.1601386297915253
+            ],
+            "geometric_total": 2.2698636325934114,
+            "d_agent": 1.139552780087987,
+            "d_goal": 1.1303108525054244
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.4666666666666667,
+          "steps_diff": 105.33333333333333,
+          "geometrically_easier": "yellow_zone1"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 89
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 33,
+        "int_color": "magenta",
+        "goal_color": "blue",
+        "layout_seed": 273,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 284.14285714285717,
+            "std_steps": 87.3145848910357,
+            "n_completions": 6,
+            "position": [
+              -0.29933263880405603,
+              -1.1197221754684406
+            ],
+            "geometric_total": 4.1716869344823095,
+            "d_agent": 0.9721424621893029,
+            "d_goal": 3.1995444722930064
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.7333333333333333,
+            "mean_steps": 101.54545454545455,
+            "std_steps": 12.34624445190179,
+            "n_completions": 11,
+            "position": [
+              -0.09070908717390753,
+              1.0887315495703838
+            ],
+            "geometric_total": 2.3997614841178256,
+            "d_agent": 1.2463494608266836,
+            "d_goal": 1.1534120232911418
+          },
+          "empirically_easier": "magenta_zone1",
+          "difficulty_diff": 0.33333333333333326,
+          "steps_diff": 182.5974025974026,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": true,
+          "steps": 262
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 34,
+        "int_color": "green",
+        "goal_color": "yellow",
+        "layout_seed": 280,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 213.63636363636363,
+            "std_steps": 57.782150007628935,
+            "n_completions": 5,
+            "position": [
+              0.5207825457230674,
+              -1.1005202429289518
+            ],
+            "geometric_total": 4.328666184426949,
+            "d_agent": 1.0535582419115586,
+            "d_goal": 3.275107942515391
+          },
+          "green_zone1": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 137.75,
+            "std_steps": 36.34126442489309,
+            "n_completions": 4,
+            "position": [
+              -0.6349891881488796,
+              0.9351181042220594
+            ],
+            "geometric_total": 2.3928157208919494,
+            "d_agent": 1.301194239915352,
+            "d_goal": 1.0916214809765972
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.06666666666666665,
+          "steps_diff": 75.88636363636363,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 252
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 35,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 287,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.6,
+            "mean_steps": 190.5,
+            "std_steps": 22.14158982548453,
+            "n_completions": 9,
+            "position": [
+              -0.9846032580277903,
+              0.3845837021604881
+            ],
+            "geometric_total": 3.8278984777963427,
+            "d_agent": 0.8133431554145164,
+            "d_goal": 3.014555322381826
+          },
+          "blue_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 92.66666666666667,
+            "std_steps": 3.7712361663282534,
+            "n_completions": 3,
+            "position": [
+              0.3932674099091739,
+              -1.0126044559103033
+            ],
+            "geometric_total": 2.3913699563319093,
+            "d_agent": 1.2904976132432555,
+            "d_goal": 1.1008723430886538
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.39999999999999997,
+          "steps_diff": 97.83333333333333,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": false,
+          "steps": 148
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 36,
+        "int_color": "blue",
+        "goal_color": "magenta",
+        "layout_seed": 294,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 302.25,
+            "std_steps": 100.12336140981284,
+            "n_completions": 6,
+            "position": [
+              -0.11280297842026125,
+              -0.6016416280757686
+            ],
+            "geometric_total": 3.7876305391257685,
+            "d_agent": 0.8285883349081207,
+            "d_goal": 2.959042204217648
+          },
+          "blue_zone1": {
+            "completion_rate": 0.4,
+            "mean_steps": 114.66666666666667,
+            "std_steps": 40.0194397206602,
+            "n_completions": 6,
+            "position": [
+              0.8491066284529974,
+              1.0683826714517666
+            ],
+            "geometric_total": 2.1397859715642884,
+            "d_agent": 1.1078874238922694,
+            "d_goal": 1.0318985476720193
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.0,
+          "steps_diff": 187.58333333333331,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 90
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 37,
+        "int_color": "magenta",
+        "goal_color": "yellow",
+        "layout_seed": 301,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 251.16666666666666,
+            "std_steps": 80.60276394488936,
+            "n_completions": 4,
+            "position": [
+              -0.6201089785629376,
+              0.6524789769398759
+            ],
+            "geometric_total": 3.813121672720435,
+            "d_agent": 0.9569441096869183,
+            "d_goal": 2.856177563033517
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.4,
+            "mean_steps": 87.83333333333333,
+            "std_steps": 5.580223014261069,
+            "n_completions": 6,
+            "position": [
+              -0.0332042324053972,
+              -1.0950059497024405
+            ],
+            "geometric_total": 2.084153271447277,
+            "d_agent": 1.045545481912645,
+            "d_goal": 1.0386077895346315
+          },
+          "empirically_easier": "magenta_zone1",
+          "difficulty_diff": 0.13333333333333336,
+          "steps_diff": 163.33333333333331,
+          "geometrically_easier": "magenta_zone1"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone1",
+          "success": true,
+          "steps": 92
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 38,
+        "int_color": "yellow",
+        "goal_color": "blue",
+        "layout_seed": 308,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.2,
+            "mean_steps": 159.25,
+            "std_steps": 3.766629793329841,
+            "n_completions": 3,
+            "position": [
+              -0.7062778732551044,
+              -0.0544504950883116
+            ],
+            "geometric_total": 3.835030690214296,
+            "d_agent": 0.8928590676835484,
+            "d_goal": 2.942171622530748
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 97.1,
+            "std_steps": 23.85979882563975,
+            "n_completions": 10,
+            "position": [
+              1.2793545387815513,
+              -0.06831616476159506
+            ],
+            "geometric_total": 2.15806240802706,
+            "d_agent": 1.123456753009832,
+            "d_goal": 1.0346056550172278
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.4666666666666666,
+          "steps_diff": 62.150000000000006,
+          "geometrically_easier": "yellow_zone1"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone0",
+          "success": true,
+          "steps": 163
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 39,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 315,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.0,
+            "mean_steps": 500.0,
+            "std_steps": 0.0,
+            "n_completions": 0,
+            "position": [
+              -0.1647229054146533,
+              -0.6414807407915052
+            ],
+            "geometric_total": 3.715072918526163,
+            "d_agent": 0.8309317341917036,
+            "d_goal": 2.8841411843344593
+          },
+          "green_zone1": {
+            "completion_rate": 0.8,
+            "mean_steps": 121.83333333333333,
+            "std_steps": 35.89993809960618,
+            "n_completions": 12,
+            "position": [
+              -0.6541378411408543,
+              1.1838339766739074
+            ],
+            "geometric_total": 2.0852467484091513,
+            "d_agent": 1.0690693454971663,
+            "d_goal": 1.0161774029119852
+          },
+          "empirically_easier": "green_zone1",
+          "difficulty_diff": 0.8,
+          "steps_diff": 378.1666666666667,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": true,
+          "steps": 116
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 40,
+        "int_color": "green",
+        "goal_color": "yellow",
+        "layout_seed": 322,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 178.42857142857142,
+            "std_steps": 24.23608374102633,
+            "n_completions": 5,
+            "position": [
+              -0.10791166393648587,
+              0.9977037925316038
+            ],
+            "geometric_total": 3.6107954872321226,
+            "d_agent": 0.8551243458483255,
+            "d_goal": 2.755671141383797
+          },
+          "green_zone1": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 126.42857142857143,
+            "std_steps": 55.24195388821575,
+            "n_completions": 7,
+            "position": [
+              0.2689764921758557,
+              -0.814843278853331
+            ],
+            "geometric_total": 2.035335865679162,
+            "d_agent": 1.0333291639365787,
+            "d_goal": 1.002006701742583
+          },
+          "empirically_easier": "green_zone1",
+          "difficulty_diff": 0.13333333333333336,
+          "steps_diff": 51.999999999999986,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": true,
+          "steps": 87
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 41,
+        "int_color": "blue",
+        "goal_color": "magenta",
+        "layout_seed": 329,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 357.4,
+            "std_steps": 68.49408733606136,
+            "n_completions": 4,
+            "position": [
+              -1.1108569407034576,
+              0.4472535171743404
+            ],
+            "geometric_total": 4.428625840015087,
+            "d_agent": 1.09207566932873,
+            "d_goal": 3.336550170686357
+          },
+          "blue_zone1": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 117.75,
+            "std_steps": 22.851422275210794,
+            "n_completions": 4,
+            "position": [
+              1.1123460632893922,
+              -0.2564472498059427
+            ],
+            "geometric_total": 2.3103490968259592,
+            "d_agent": 1.2527800650519516,
+            "d_goal": 1.0575690317740079
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.0,
+          "steps_diff": 239.64999999999998,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 106
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 42,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 336,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.6,
+            "mean_steps": 206.93333333333334,
+            "std_steps": 75.08347946711639,
+            "n_completions": 9,
+            "position": [
+              0.12419017923104138,
+              -0.8789501323301
+            ],
+            "geometric_total": 3.8828260966440515,
+            "d_agent": 0.8036102461204988,
+            "d_goal": 3.079215850523553
+          },
+          "green_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 500,
+            "std_steps": 0,
+            "n_completions": 0,
+            "position": [
+              0.49050356901197006,
+              1.2621531651515645
+            ],
+            "geometric_total": 2.396102620388353,
+            "d_agent": 1.3738431200045063,
+            "d_goal": 1.0222595003838468
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.6,
+          "steps_diff": 293.06666666666666,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 319
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 43,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 343,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 363.85714285714283,
+            "std_steps": 57.70968864294198,
+            "n_completions": 6,
+            "position": [
+              -0.8102398688822589,
+              -1.1512465951382753
+            ],
+            "geometric_total": 4.663200851082634,
+            "d_agent": 1.183466720726354,
+            "d_goal": 3.47973413035628
+          },
+          "green_zone1": {
+            "completion_rate": 0.7333333333333333,
+            "mean_steps": 133.8181818181818,
+            "std_steps": 83.86116034777979,
+            "n_completions": 11,
+            "position": [
+              0.5957071835076673,
+              0.8412946616382434
+            ],
+            "geometric_total": 2.336441108376301,
+            "d_agent": 1.2866358249404368,
+            "d_goal": 1.0498052834358642
+          },
+          "empirically_easier": "green_zone1",
+          "difficulty_diff": 0.33333333333333326,
+          "steps_diff": 230.03896103896102,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": true,
+          "steps": 92
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 44,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 350,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 343.6666666666667,
+            "std_steps": 104.02157895787244,
+            "n_completions": 5,
+            "position": [
+              0.6752278135048403,
+              -0.2686266489280824
+            ],
+            "geometric_total": 3.948246661962466,
+            "d_agent": 0.8281822516871203,
+            "d_goal": 3.1200644102753454
+          },
+          "blue_zone1": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 100.75,
+            "std_steps": 5.0682837331783235,
+            "n_completions": 4,
+            "position": [
+              -1.1309608642012492,
+              0.7086671437360871
+            ],
+            "geometric_total": 2.3204902705614607,
+            "d_agent": 1.2408651501822339,
+            "d_goal": 1.0796251203792266
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.06666666666666665,
+          "steps_diff": 242.91666666666669,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": true,
+          "steps": 405
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 45,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 357,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 232.0,
+            "std_steps": 80.32683237872635,
+            "n_completions": 1,
+            "position": [
+              -0.693923269869675,
+              -0.7989776825953879
+            ],
+            "geometric_total": 3.9214173311935614,
+            "d_agent": 0.9673542698430471,
+            "d_goal": 2.954063061350514
+          },
+          "blue_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 99.6,
+            "std_steps": 17.9510445378535,
+            "n_completions": 5,
+            "position": [
+              0.09823135902183493,
+              0.9887246052579528
+            ],
+            "geometric_total": 2.105574556770523,
+            "d_agent": 1.0967247913890321,
+            "d_goal": 1.0088497653814905
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.26666666666666666,
+          "steps_diff": 132.4,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 82
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 46,
+        "int_color": "yellow",
+        "goal_color": "blue",
+        "layout_seed": 364,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 247.54545454545453,
+            "std_steps": 81.62482202276422,
+            "n_completions": 10,
+            "position": [
+              -0.5429939153981115,
+              -1.179793144960059
+            ],
+            "geometric_total": 4.426707723422516,
+            "d_agent": 1.0631368322381547,
+            "d_goal": 3.363570891184361
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 97.4,
+            "std_steps": 6.945502141674135,
+            "n_completions": 5,
+            "position": [
+              0.6579296100591482,
+              0.7230401979678479
+            ],
+            "geometric_total": 2.3824839080425666,
+            "d_agent": 1.1926756682886148,
+            "d_goal": 1.1898082397539518
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.3333333333333333,
+          "steps_diff": 150.14545454545453,
+          "geometrically_easier": "yellow_zone1"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone0",
+          "success": true,
+          "steps": 179
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 47,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 371,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 278.6,
+            "std_steps": 93.07330444332574,
+            "n_completions": 2,
+            "position": [
+              0.7082319113016918,
+              -0.734720394485021
+            ],
+            "geometric_total": 4.168350019319298,
+            "d_agent": 0.9862940675889982,
+            "d_goal": 3.1820559517303
+          },
+          "blue_zone1": {
+            "completion_rate": 0.6,
+            "mean_steps": 133.33333333333334,
+            "std_steps": 41.92851058647326,
+            "n_completions": 9,
+            "position": [
+              -0.6312248380942695,
+              1.1653110193671494
+            ],
+            "geometric_total": 2.3807916344946864,
+            "d_agent": 1.3403290467520046,
+            "d_goal": 1.0404625877426819
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.4666666666666667,
+          "steps_diff": 145.26666666666668,
+          "geometrically_easier": "blue_zone1"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": false,
+          "steps": 240
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": false,
+        "empirical_geo_agree": true
+      },
+      {
+        "config_id": 48,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 378,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.6,
+            "mean_steps": 335.4166666666667,
+            "std_steps": 83.2771060309428,
+            "n_completions": 9,
+            "position": [
+              -0.7705182795638351,
+              -0.1314301838350711
+            ],
+            "geometric_total": 3.8635314724890772,
+            "d_agent": 0.8385354899202239,
+            "d_goal": 3.0249959825688535
+          },
+          "green_zone1": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 117.0,
+            "std_steps": 0,
+            "n_completions": 1,
+            "position": [
+              1.4163387591049335,
+              -0.20708890026340923
+            ],
+            "geometric_total": 2.3775112440549853,
+            "d_agent": 1.3611696623356582,
+            "d_goal": 1.0163415817193269
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.5333333333333333,
+          "steps_diff": 218.41666666666669,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": true,
+          "steps": 262
+        },
+        "chose_empirically_easier": false,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": false
+      },
+      {
+        "config_id": 49,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 385,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 481.25,
+            "std_steps": 32.47595264191645,
+            "n_completions": 1,
+            "position": [
+              -1.2255689114513009,
+              0.5319799925181176
+            ],
+            "geometric_total": 4.425188864742984,
+            "d_agent": 1.1325125216552099,
+            "d_goal": 3.2926763430877743
+          },
+          "green_zone1": {
+            "completion_rate": 0.6,
+            "mean_steps": 158.4,
+            "std_steps": 121.99606551032703,
+            "n_completions": 9,
+            "position": [
+              0.9728310839569646,
+              -0.07042395476810338
+            ],
+            "geometric_total": 2.1794147355024736,
+            "d_agent": 1.1661653813419124,
+            "d_goal": 1.013249354160561
+          },
+          "empirically_easier": "green_zone1",
+          "difficulty_diff": 0.5333333333333333,
+          "steps_diff": 322.85,
+          "geometrically_easier": "green_zone1"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": true,
+          "steps": 152
+        },
+        "chose_empirically_easier": true,
+        "chose_geometrically_easier": true,
+        "empirical_geo_agree": true
+      }
+    ],
+    "analysis": {
+      "n": 50,
+      "chose_easier": 38,
+      "p_easier": 0.76,
+      "ci_low": 0.6258705062480763,
+      "ci_high": 0.8570274759812779,
+      "success_rate": 0.7
+    }
+  },
+  "opteq": {
+    "results": [
+      {
+        "config_id": 0,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 1042,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 147.33333333333334,
+            "std_steps": 67.89861723350647,
+            "n_completions": 6,
+            "position": [
+              1.1333731822650304,
+              -0.7062440233598026
+            ],
+            "geometric_total": 2.2339530103201595,
+            "d_agent": 1.161798567183003,
+            "d_goal": 1.0721544431371564
+          },
+          "green_zone1": {
+            "completion_rate": 0.4,
+            "mean_steps": 213.44444444444446,
+            "std_steps": 42.21403429379884,
+            "n_completions": 6,
+            "position": [
+              -0.798782391433928,
+              0.5657713746159094
+            ],
+            "geometric_total": 4.3783070679766745,
+            "d_agent": 1.1617985696807789,
+            "d_goal": 3.2165084982958954
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.0,
+          "steps_diff": 66.11111111111111,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 87
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 1,
+        "int_color": "blue",
+        "goal_color": "magenta",
+        "layout_seed": 1049,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 112.0,
+            "std_steps": 18.077610461562667,
+            "n_completions": 5,
+            "position": [
+              -1.232875561680411,
+              0.14238029680044656
+            ],
+            "geometric_total": 2.2900057331931816,
+            "d_agent": 1.036122533796579,
+            "d_goal": 1.2538831993966024
+          },
+          "blue_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 405.8888888888889,
+            "std_steps": 129.06023093841318,
+            "n_completions": 2,
+            "position": [
+              0.747835090968535,
+              0.3019303569357024
+            ],
+            "geometric_total": 4.124909912040251,
+            "d_agent": 1.036122534808469,
+            "d_goal": 3.0887873772317818
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.19999999999999998,
+          "steps_diff": 293.8888888888889,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": false,
+          "steps": 348
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 2,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 1056,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.6,
+            "mean_steps": 175.33333333333334,
+            "std_steps": 97.86271563323342,
+            "n_completions": 9,
+            "position": [
+              0.9106370819157946,
+              0.8902369327668747
+            ],
+            "geometric_total": 2.5334921866235662,
+            "d_agent": 1.438380214085747,
+            "d_goal": 1.0951119725378193
+          },
+          "green_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 500.0,
+            "std_steps": 0,
+            "n_completions": 0,
+            "position": [
+              -0.25257570344248886,
+              -1.588196603635773
+            ],
+            "geometric_total": 5.0360043798268235,
+            "d_agent": 1.4383802146821714,
+            "d_goal": 3.5976241651446523
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.6,
+          "steps_diff": 324.66666666666663,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 237
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 3,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 1063,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 134.5,
+            "std_steps": 31.579265349276255,
+            "n_completions": 4,
+            "position": [
+              0.22134160477427486,
+              0.899303054047791
+            ],
+            "geometric_total": 2.1687716265549195,
+            "d_agent": 1.110576046924791,
+            "d_goal": 1.0581955796301288
+          },
+          "blue_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 186.07692307692307,
+            "std_steps": 32.82696250729911,
+            "n_completions": 3,
+            "position": [
+              0.7672975133088566,
+              -0.8433355895433752
+            ],
+            "geometric_total": 3.9338357398421326,
+            "d_agent": 1.1105760457907852,
+            "d_goal": 2.8232596940513477
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.06666666666666665,
+          "steps_diff": 51.576923076923066,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": true,
+          "steps": 154
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 4,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 1070,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 135.0,
+            "std_steps": 3.0,
+            "n_completions": 2,
+            "position": [
+              -0.4815894689224197,
+              1.0886894320054534
+            ],
+            "geometric_total": 2.624069994737086,
+            "d_agent": 1.369022428726936,
+            "d_goal": 1.2550475660101503
+          },
+          "green_zone1": {
+            "completion_rate": 0.6,
+            "mean_steps": 358.2,
+            "std_steps": 71.24015721487424,
+            "n_completions": 9,
+            "position": [
+              0.22254731220010682,
+              -1.555593506699592
+            ],
+            "geometric_total": 4.840391974807538,
+            "d_agent": 1.3690224287601165,
+            "d_goal": 3.471369546047422
+          },
+          "empirically_easier": "green_zone1",
+          "difficulty_diff": 0.4666666666666667,
+          "steps_diff": 223.2,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 139
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 5,
+        "int_color": "green",
+        "goal_color": "yellow",
+        "layout_seed": 1077,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.8,
+            "mean_steps": 118.91666666666667,
+            "std_steps": 69.15737889448641,
+            "n_completions": 12,
+            "position": [
+              -0.7887696279015299,
+              -0.6410803638621538
+            ],
+            "geometric_total": 2.2188164646773947,
+            "d_agent": 1.0574544388900404,
+            "d_goal": 1.161362025787354
+          },
+          "green_zone1": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 247.5,
+            "std_steps": 37.5,
+            "n_completions": 1,
+            "position": [
+              0.8177972979778849,
+              0.7322656358704138
+            ],
+            "geometric_total": 4.212816846883395,
+            "d_agent": 1.057454439748195,
+            "d_goal": 3.1553624071351996
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.7333333333333334,
+          "steps_diff": 128.58333333333331,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 91
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 6,
+        "int_color": "yellow",
+        "goal_color": "green",
+        "layout_seed": 1084,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 200.88888888888889,
+            "std_steps": 94.42038909336907,
+            "n_completions": 5,
+            "position": [
+              0.2971883162142175,
+              0.9109581441081893
+            ],
+            "geometric_total": 2.6946190003747157,
+            "d_agent": 1.1226933604263225,
+            "d_goal": 1.5719256399483934
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 228.66666666666666,
+            "std_steps": 83.7071615149438,
+            "n_completions": 0,
+            "position": [
+              0.7251404644414109,
+              -0.8409911525033223
+            ],
+            "geometric_total": 4.440837816424959,
+            "d_agent": 1.1226933614971513,
+            "d_goal": 3.3181444549278076
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.3333333333333333,
+          "steps_diff": 27.77777777777777,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": false,
+          "steps": 175
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 7,
+        "int_color": "yellow",
+        "goal_color": "blue",
+        "layout_seed": 1091,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.5333333333333333,
+            "mean_steps": 113.0,
+            "std_steps": 3.3166247903554,
+            "n_completions": 8,
+            "position": [
+              0.637738438133992,
+              -1.324970065593142
+            ],
+            "geometric_total": 2.481741596542079,
+            "d_agent": 1.41960701955771,
+            "d_goal": 1.0621345769843689
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 246.77777777777777,
+            "std_steps": 69.56655929999346,
+            "n_completions": 5,
+            "position": [
+              0.1309910141326589,
+              1.4201178290620247
+            ],
+            "geometric_total": 5.040978836233682,
+            "d_agent": 1.4196070212195862,
+            "d_goal": 3.6213718150140957
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.2,
+          "steps_diff": 133.77777777777777,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": false,
+          "steps": 147
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 8,
+        "int_color": "green",
+        "goal_color": "yellow",
+        "layout_seed": 1098,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 182.0,
+            "std_steps": 72.0,
+            "n_completions": 2,
+            "position": [
+              -1.0962874699882994,
+              0.918078116300435
+            ],
+            "geometric_total": 2.512406307778429,
+            "d_agent": 1.4541878800369685,
+            "d_goal": 1.0582184277414604
+          },
+          "green_zone1": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 267.5,
+            "std_steps": 96.50932597422904,
+            "n_completions": 7,
+            "position": [
+              1.6167382631478384,
+              0.03515928633682346
+            ],
+            "geometric_total": 5.0707347114468,
+            "d_agent": 1.454187878036312,
+            "d_goal": 3.6165468334104878
+          },
+          "empirically_easier": "green_zone1",
+          "difficulty_diff": 0.33333333333333337,
+          "steps_diff": 85.5,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 286
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 9,
+        "int_color": "blue",
+        "goal_color": "magenta",
+        "layout_seed": 1105,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 117.83333333333333,
+            "std_steps": 6.011562932290477,
+            "n_completions": 6,
+            "position": [
+              -1.2315462772320152,
+              0.3281333658596813
+            ],
+            "geometric_total": 2.4026917637201164,
+            "d_agent": 1.2050652165635185,
+            "d_goal": 1.1976265471565979
+          },
+          "blue_zone1": {
+            "completion_rate": 0.8,
+            "mean_steps": 278.84615384615387,
+            "std_steps": 89.92718948284787,
+            "n_completions": 12,
+            "position": [
+              0.7162118841219871,
+              -1.0713696440169571
+            ],
+            "geometric_total": 4.2029370661059104,
+            "d_agent": 1.2050652154117252,
+            "d_goal": 2.9978718506941857
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.4,
+          "steps_diff": 161.01282051282055,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 196
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 10,
+        "int_color": "yellow",
+        "goal_color": "green",
+        "layout_seed": 1112,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.6,
+            "mean_steps": 100.44444444444444,
+            "std_steps": 7.009693464705558,
+            "n_completions": 9,
+            "position": [
+              -0.674480317194409,
+              0.9144772257981125
+            ],
+            "geometric_total": 2.434361004248804,
+            "d_agent": 1.1631986977967685,
+            "d_goal": 1.2711623064520352
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 164.5,
+            "std_steps": 38.54218468120353,
+            "n_completions": 0,
+            "position": [
+              -0.13670189902321908,
+              -1.3269052205998402
+            ],
+            "geometric_total": 4.523930410937486,
+            "d_agent": 1.1631986963846142,
+            "d_goal": 3.360731714552872
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.6,
+          "steps_diff": 64.05555555555556,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": false,
+          "steps": 135
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 11,
+        "int_color": "yellow",
+        "goal_color": "green",
+        "layout_seed": 1119,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 149.66666666666666,
+            "std_steps": 45.10604788224696,
+            "n_completions": 6,
+            "position": [
+              0.08359378877674696,
+              1.0080710800881794
+            ],
+            "geometric_total": 2.4423383346830154,
+            "d_agent": 1.0940634675967436,
+            "d_goal": 1.3482748670862719
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 160.0,
+            "std_steps": 37.27264412407577,
+            "n_completions": 2,
+            "position": [
+              -1.2994687793594775,
+              -0.15294196467436297
+            ],
+            "geometric_total": 4.187004901321198,
+            "d_agent": 1.0940634688489252,
+            "d_goal": 3.092941432472273
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.2666666666666667,
+          "steps_diff": 10.333333333333343,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone0",
+          "success": true,
+          "steps": 147
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 12,
+        "int_color": "blue",
+        "goal_color": "magenta",
+        "layout_seed": 1126,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 109.25,
+            "std_steps": 22.47637648732553,
+            "n_completions": 4,
+            "position": [
+              -0.2955201231073565,
+              1.0778943851557452
+            ],
+            "geometric_total": 2.227793850888869,
+            "d_agent": 1.2055080856436196,
+            "d_goal": 1.022285765245249
+          },
+          "blue_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 315.6,
+            "std_steps": 77.54379407792734,
+            "n_completions": 5,
+            "position": [
+              0.40568984545082165,
+              -1.171290652704633
+            ],
+            "geometric_total": 4.579789993838456,
+            "d_agent": 1.2055080867381256,
+            "d_goal": 3.3742819071003303
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.06666666666666665,
+          "steps_diff": 206.35000000000002,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 192
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 13,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 1133,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 110.7,
+            "std_steps": 31.14498354470588,
+            "n_completions": 10,
+            "position": [
+              -0.4956577479680324,
+              0.7717064571159995
+            ],
+            "geometric_total": 2.1765002792915977,
+            "d_agent": 1.0954611892066666,
+            "d_goal": 1.0810390900849314
+          },
+          "green_zone1": {
+            "completion_rate": 0.4,
+            "mean_steps": 314.8333333333333,
+            "std_steps": 41.53479130667312,
+            "n_completions": 6,
+            "position": [
+              0.24534510346080346,
+              -1.2896616304197064
+            ],
+            "geometric_total": 3.93732998638626,
+            "d_agent": 1.0954611873511029,
+            "d_goal": 2.841868799035157
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.2666666666666666,
+          "steps_diff": 204.13333333333333,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": true,
+          "steps": 279
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 14,
+        "int_color": "magenta",
+        "goal_color": "green",
+        "layout_seed": 1140,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 94.25,
+            "std_steps": 11.94518731540029,
+            "n_completions": 4,
+            "position": [
+              -0.9508018934895335,
+              0.7707248480557536
+            ],
+            "geometric_total": 2.135024070402602,
+            "d_agent": 1.0346660466702444,
+            "d_goal": 1.1003580237323576
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 191.1818181818182,
+            "std_steps": 42.64615123168834,
+            "n_completions": 0,
+            "position": [
+              0.5407863059054323,
+              -0.651381328048828
+            ],
+            "geometric_total": 4.138890060038517,
+            "d_agent": 1.0346660467677042,
+            "d_goal": 3.104224013270813
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.26666666666666666,
+          "steps_diff": 96.93181818181819,
+          "geometrically_easier": "magenta_zone0"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone1",
+          "success": false,
+          "steps": 170
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 15,
+        "int_color": "blue",
+        "goal_color": "magenta",
+        "layout_seed": 1147,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.2,
+            "mean_steps": 140.0,
+            "std_steps": 18.239152027072603,
+            "n_completions": 3,
+            "position": [
+              -1.2485390786962256,
+              0.4108662278580319
+            ],
+            "geometric_total": 2.4494114803363582,
+            "d_agent": 1.388569364850024,
+            "d_goal": 1.0608421154863343
+          },
+          "blue_zone1": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 319.0,
+            "std_steps": 70.82885903872285,
+            "n_completions": 10,
+            "position": [
+              1.2958955480852519,
+              -0.6186638183644774
+            ],
+            "geometric_total": 4.6862878984273015,
+            "d_agent": 1.3885693665217438,
+            "d_goal": 3.297718531905558
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.4666666666666666,
+          "steps_diff": 179.0,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": true,
+          "steps": 133
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 16,
+        "int_color": "magenta",
+        "goal_color": "yellow",
+        "layout_seed": 1154,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 1.0,
+            "mean_steps": 105.93333333333334,
+            "std_steps": 14.548615818084627,
+            "n_completions": 15,
+            "position": [
+              -1.3081872692039276,
+              0.43807519489757185
+            ],
+            "geometric_total": 2.2858894490182395,
+            "d_agent": 1.2039024623525312,
+            "d_goal": 1.0819869866657084
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 500,
+            "std_steps": 0,
+            "n_completions": 0,
+            "position": [
+              0.7822070108175774,
+              -0.746471430628015
+            ],
+            "geometric_total": 4.668368337727711,
+            "d_agent": 1.2039024605633082,
+            "d_goal": 3.4644658771644026
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 1.0,
+          "steps_diff": 394.06666666666666,
+          "geometrically_easier": "magenta_zone0"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": true,
+          "steps": 94
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 17,
+        "int_color": "yellow",
+        "goal_color": "magenta",
+        "layout_seed": 1161,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.5333333333333333,
+            "mean_steps": 182.75,
+            "std_steps": 82.25987782631336,
+            "n_completions": 8,
+            "position": [
+              -0.08046526150300828,
+              -1.2498252409292518
+            ],
+            "geometric_total": 2.4500834575927053,
+            "d_agent": 1.0267028564128984,
+            "d_goal": 1.4233806011798067
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 299.125,
+            "std_steps": 66.19939104704815,
+            "n_completions": 7,
+            "position": [
+              -0.2527333485587651,
+              0.7753657720751645
+            ],
+            "geometric_total": 4.247075219958271,
+            "d_agent": 1.0267028563025524,
+            "d_goal": 3.2203723636557187
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.06666666666666665,
+          "steps_diff": 116.375,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 309
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 18,
+        "int_color": "yellow",
+        "goal_color": "green",
+        "layout_seed": 1168,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 97.16666666666667,
+            "std_steps": 2.4776781245530843,
+            "n_completions": 6,
+            "position": [
+              -0.5424542300178592,
+              -0.6205013847875072
+            ],
+            "geometric_total": 2.3765109036260794,
+            "d_agent": 1.1726748791610615,
+            "d_goal": 1.203836024465018
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 329.125,
+            "std_steps": 98.81350805937414,
+            "n_completions": 3,
+            "position": [
+              1.313318369543646,
+              0.7661226462618931
+            ],
+            "geometric_total": 4.610256978080319,
+            "d_agent": 1.1726748801252662,
+            "d_goal": 3.437582097955052
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.2,
+          "steps_diff": 231.95833333333331,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": false,
+          "steps": 174
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 19,
+        "int_color": "green",
+        "goal_color": "yellow",
+        "layout_seed": 1175,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 150.4,
+            "std_steps": 95.86052367893679,
+            "n_completions": 10,
+            "position": [
+              0.9371652792967101,
+              -0.7059425205403063
+            ],
+            "geometric_total": 2.204387106956794,
+            "d_agent": 1.078021080271819,
+            "d_goal": 1.1263660266849749
+          },
+          "green_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 295.25,
+            "std_steps": 28.472574523565655,
+            "n_completions": 5,
+            "position": [
+              -0.7464408106209268,
+              0.6405253882862249
+            ],
+            "geometric_total": 4.3579954689937725,
+            "d_agent": 1.0780210803709689,
+            "d_goal": 3.2799743886228034
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.3333333333333333,
+          "steps_diff": 144.85,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 88
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 20,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 1182,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.2,
+            "mean_steps": 84.66666666666667,
+            "std_steps": 4.109609335312651,
+            "n_completions": 3,
+            "position": [
+              -0.9992294488863048,
+              -0.33974214354347976
+            ],
+            "geometric_total": 2.0294806676019874,
+            "d_agent": 1.0143801108262367,
+            "d_goal": 1.0151005567757505
+          },
+          "blue_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 164.0,
+            "std_steps": 14.149990184527416,
+            "n_completions": 0,
+            "position": [
+              0.35765867770896903,
+              0.9538817561136215
+            ],
+            "geometric_total": 3.903729242850914,
+            "d_agent": 1.014380110109605,
+            "d_goal": 2.889349132741309
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.2,
+          "steps_diff": 79.33333333333333,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": true,
+          "steps": 96
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 21,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 1189,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 129.3,
+            "std_steps": 75.79584421325487,
+            "n_completions": 10,
+            "position": [
+              0.3488669796791585,
+              -0.9675712143084095
+            ],
+            "geometric_total": 2.170034678545173,
+            "d_agent": 1.0336852021773308,
+            "d_goal": 1.1363494763678423
+          },
+          "blue_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 194.75,
+            "std_steps": 38.66765444140619,
+            "n_completions": 0,
+            "position": [
+              -0.07457369938825785,
+              1.0417261498350476
+            ],
+            "geometric_total": 4.145432634476353,
+            "d_agent": 1.0336852005306303,
+            "d_goal": 3.1117474339457227
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.6666666666666666,
+          "steps_diff": 65.44999999999999,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": true,
+          "steps": 266
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 22,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 1196,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.8666666666666667,
+            "mean_steps": 157.15384615384616,
+            "std_steps": 57.99846967987259,
+            "n_completions": 13,
+            "position": [
+              -0.24753112024114823,
+              -1.4067445181066338
+            ],
+            "geometric_total": 2.584930126592796,
+            "d_agent": 1.4688404063359817,
+            "d_goal": 1.1160897202568145
+          },
+          "green_zone1": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 392.0,
+            "std_steps": 0,
+            "n_completions": 1,
+            "position": [
+              0.3820240263457876,
+              1.4625655960399628
+            ],
+            "geometric_total": 5.077794565260303,
+            "d_agent": 1.4688404060688323,
+            "d_goal": 3.6089541591914713
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.8,
+          "steps_diff": 234.84615384615384,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": null,
+          "success": false,
+          "steps": 172
+        },
+        "chose_empirically_easier": null
+      },
+      {
+        "config_id": 23,
+        "int_color": "green",
+        "goal_color": "yellow",
+        "layout_seed": 1203,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 135.5,
+            "std_steps": 11.368817000902073,
+            "n_completions": 6,
+            "position": [
+              -1.2910078974692767,
+              0.9497577781098747
+            ],
+            "geometric_total": 2.4483694535055345,
+            "d_agent": 1.3685859535500804,
+            "d_goal": 1.079783499955454
+          },
+          "green_zone1": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 242.57142857142858,
+            "std_steps": 59.91149935615066,
+            "n_completions": 4,
+            "position": [
+              -0.430310258309298,
+              -1.2810569379821746
+            ],
+            "geometric_total": 4.613018884761745,
+            "d_agent": 1.368585954221546,
+            "d_goal": 3.2444329305401993
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.13333333333333336,
+          "steps_diff": 107.07142857142858,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": true,
+          "steps": 431
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 24,
+        "int_color": "yellow",
+        "goal_color": "blue",
+        "layout_seed": 1210,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 206.16666666666666,
+            "std_steps": 131.8413398327281,
+            "n_completions": 6,
+            "position": [
+              -1.2762427474493776,
+              -0.7549391937728762
+            ],
+            "geometric_total": 2.6456878872365404,
+            "d_agent": 1.4634108216653776,
+            "d_goal": 1.1822770655711627
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 207.57142857142858,
+            "std_steps": 51.59971523414541,
+            "n_completions": 3,
+            "position": [
+              0.5291920672503139,
+              1.449568017689202
+            ],
+            "geometric_total": 5.307566421332294,
+            "d_agent": 1.4634108194351472,
+            "d_goal": 3.8441556018971466
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.2,
+          "steps_diff": 1.4047619047619264,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": false,
+          "steps": 146
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 25,
+        "int_color": "magenta",
+        "goal_color": "yellow",
+        "layout_seed": 1217,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 103.7,
+            "std_steps": 10.49809506529637,
+            "n_completions": 10,
+            "position": [
+              0.8755373958039309,
+              0.3859758394760579
+            ],
+            "geometric_total": 2.24842469801876,
+            "d_agent": 1.0732538591828962,
+            "d_goal": 1.175170838835864
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 260.4,
+            "std_steps": 106.80936288546992,
+            "n_completions": 2,
+            "position": [
+              -1.165543074434879,
+              -0.23493289180524096
+            ],
+            "geometric_total": 4.239043757263936,
+            "d_agent": 1.0732538592662433,
+            "d_goal": 3.165789897997693
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.5333333333333333,
+          "steps_diff": 156.7,
+          "geometrically_easier": "magenta_zone0"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": true,
+          "steps": 106
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 26,
+        "int_color": "magenta",
+        "goal_color": "blue",
+        "layout_seed": 1224,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.8666666666666667,
+            "mean_steps": 125.76923076923077,
+            "std_steps": 12.311057232322284,
+            "n_completions": 13,
+            "position": [
+              1.3937057422816095,
+              -0.25057578434516736
+            ],
+            "geometric_total": 2.47088167823389,
+            "d_agent": 1.315676191114481,
+            "d_goal": 1.1552054871194086
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 293.0,
+            "std_steps": 0,
+            "n_completions": 0,
+            "position": [
+              -0.6580915519070594,
+              -0.904443418488027
+            ],
+            "geometric_total": 4.534756872345538,
+            "d_agent": 1.3156761927527865,
+            "d_goal": 3.219080679592751
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.8666666666666667,
+          "steps_diff": 167.23076923076923,
+          "geometrically_easier": "magenta_zone0"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": true,
+          "steps": 118
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 27,
+        "int_color": "yellow",
+        "goal_color": "green",
+        "layout_seed": 1231,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.9333333333333333,
+            "mean_steps": 110.71428571428571,
+            "std_steps": 12.109197044446196,
+            "n_completions": 14,
+            "position": [
+              -0.6808484708202478,
+              -0.4039353991086069
+            ],
+            "geometric_total": 2.242850062579733,
+            "d_agent": 1.1141558561972147,
+            "d_goal": 1.1286942063825187
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 264.6666666666667,
+            "std_steps": 62.96206971043933,
+            "n_completions": 0,
+            "position": [
+              0.9586919248512908,
+              1.027761055634249
+            ],
+            "geometric_total": 4.368575570602656,
+            "d_agent": 1.114155855129211,
+            "d_goal": 3.2544197154734444
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.9333333333333333,
+          "steps_diff": 153.95238095238096,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone0",
+          "success": true,
+          "steps": 94
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 28,
+        "int_color": "yellow",
+        "goal_color": "magenta",
+        "layout_seed": 1238,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 113.5,
+            "std_steps": 19.56399754651385,
+            "n_completions": 4,
+            "position": [
+              -0.6011961272275655,
+              -0.8859968413331661
+            ],
+            "geometric_total": 2.2854450034394693,
+            "d_agent": 1.1274945168225676,
+            "d_goal": 1.157950486616902
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 260.85714285714283,
+            "std_steps": 75.03318993509961,
+            "n_completions": 10,
+            "position": [
+              0.7173046041367224,
+              0.9192939412022259
+            ],
+            "geometric_total": 4.307907379595028,
+            "d_agent": 1.1274945159243874,
+            "d_goal": 3.18041286367064
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.39999999999999997,
+          "steps_diff": 147.35714285714283,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 251
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 29,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 1245,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 98.5,
+            "std_steps": 1.5,
+            "n_completions": 2,
+            "position": [
+              -1.0527957857811074,
+              0.32828737198681107
+            ],
+            "geometric_total": 2.325776929607126,
+            "d_agent": 1.1653406531814219,
+            "d_goal": 1.1604362764257037
+          },
+          "green_zone1": {
+            "completion_rate": 0.8,
+            "mean_steps": 351.7692307692308,
+            "std_steps": 92.69980818680168,
+            "n_completions": 12,
+            "position": [
+              1.2053171011942427,
+              0.07571281076002938
+            ],
+            "geometric_total": 4.366937174687067,
+            "d_agent": 1.1653406540703188,
+            "d_goal": 3.2015965206167483
+          },
+          "empirically_easier": "green_zone1",
+          "difficulty_diff": 0.6666666666666667,
+          "steps_diff": 253.26923076923077,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": true,
+          "steps": 262
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 30,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 1252,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.2,
+            "mean_steps": 192.33333333333334,
+            "std_steps": 70.31516352979791,
+            "n_completions": 3,
+            "position": [
+              -0.7042498932820915,
+              -0.861947975885105
+            ],
+            "geometric_total": 2.0918069087742475,
+            "d_agent": 1.0205265981173357,
+            "d_goal": 1.0712803106569118
+          },
+          "green_zone1": {
+            "completion_rate": 0.6,
+            "mean_steps": 276.0,
+            "std_steps": 85.2672269984195,
+            "n_completions": 9,
+            "position": [
+              0.5683488777156886,
+              0.7275965193730966
+            ],
+            "geometric_total": 3.923181414240256,
+            "d_agent": 1.0205265975020785,
+            "d_goal": 2.9026548167381776
+          },
+          "empirically_easier": "green_zone1",
+          "difficulty_diff": 0.39999999999999997,
+          "steps_diff": 83.66666666666666,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": true,
+          "steps": 184
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 31,
+        "int_color": "green",
+        "goal_color": "blue",
+        "layout_seed": 1259,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 152.0,
+            "std_steps": 36.0,
+            "n_completions": 2,
+            "position": [
+              -1.0766876613690546,
+              0.1822780597459353
+            ],
+            "geometric_total": 2.4346551145788546,
+            "d_agent": 1.012067927960443,
+            "d_goal": 1.4225871866184117
+          },
+          "green_zone1": {
+            "completion_rate": 0.6,
+            "mean_steps": 313.8,
+            "std_steps": 129.0949004931385,
+            "n_completions": 9,
+            "position": [
+              0.8498331739376107,
+              -0.43547660561057
+            ],
+            "geometric_total": 4.072553599290391,
+            "d_agent": 1.0120679257657954,
+            "d_goal": 3.060485673524595
+          },
+          "empirically_easier": "green_zone1",
+          "difficulty_diff": 0.4666666666666667,
+          "steps_diff": 161.8,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone1",
+          "success": false,
+          "steps": 172
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 32,
+        "int_color": "yellow",
+        "goal_color": "green",
+        "layout_seed": 1266,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.6,
+            "mean_steps": 143.44444444444446,
+            "std_steps": 44.31230356135393,
+            "n_completions": 9,
+            "position": [
+              0.5451609031029369,
+              0.9929078645616306
+            ],
+            "geometric_total": 2.2751553431728544,
+            "d_agent": 1.1876027939382505,
+            "d_goal": 1.087552549234604
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 176.0,
+            "std_steps": 33.57082066318904,
+            "n_completions": 0,
+            "position": [
+              -0.27434678291142217,
+              -1.2304922074169995
+            ],
+            "geometric_total": 4.245790811504829,
+            "d_agent": 1.1876027942854606,
+            "d_goal": 3.058188017219369
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.6,
+          "steps_diff": 32.55555555555554,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone0",
+          "success": true,
+          "steps": 104
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 33,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 1273,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 172.14285714285714,
+            "std_steps": 47.53172946698289,
+            "n_completions": 7,
+            "position": [
+              -1.3227255932729272,
+              -1.0692946901571623
+            ],
+            "geometric_total": 2.736730039818486,
+            "d_agent": 1.4846529747397852,
+            "d_goal": 1.2520770650787005
+          },
+          "blue_zone1": {
+            "completion_rate": 0.0,
+            "mean_steps": 189.16666666666666,
+            "std_steps": 92.69918494188009,
+            "n_completions": 0,
+            "position": [
+              -0.25918624949499597,
+              1.470182915810022
+            ],
+            "geometric_total": 5.192303208512173,
+            "d_agent": 1.4846529740828056,
+            "d_goal": 3.707650234429367
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.4666666666666667,
+          "steps_diff": 17.02380952380952,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": true,
+          "steps": 119
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 34,
+        "int_color": "blue",
+        "goal_color": "magenta",
+        "layout_seed": 1280,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 119.42857142857143,
+            "std_steps": 9.22507673769311,
+            "n_completions": 7,
+            "position": [
+              0.9520185704854336,
+              0.15730899051529837
+            ],
+            "geometric_total": 2.376292764122039,
+            "d_agent": 1.2756671203095518,
+            "d_goal": 1.100625643812487
+          },
+          "blue_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 350.4,
+            "std_steps": 118.1196004056905,
+            "n_completions": 2,
+            "position": [
+              -1.5649439949955686,
+              -0.13909775350466624
+            ],
+            "geometric_total": 4.522719417193177,
+            "d_agent": 1.275667119999126,
+            "d_goal": 3.247052297194051
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.33333333333333337,
+          "steps_diff": 230.97142857142853,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": false,
+          "steps": 152
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 35,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 1287,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 143.8,
+            "std_steps": 22.229709849658406,
+            "n_completions": 10,
+            "position": [
+              1.024572726409481,
+              -0.8311407372213534
+            ],
+            "geometric_total": 2.370447679699472,
+            "d_agent": 1.3433821758341131,
+            "d_goal": 1.0270655038653587
+          },
+          "blue_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 187.75,
+            "std_steps": 50.467192313422785,
+            "n_completions": 2,
+            "position": [
+              -1.0890772891768579,
+              0.36784784130255355
+            ],
+            "geometric_total": 4.467776154789108,
+            "d_agent": 1.3433821759160205,
+            "d_goal": 3.124393978873088
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.5333333333333333,
+          "steps_diff": 43.94999999999999,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": true,
+          "steps": 141
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 36,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 1294,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.8666666666666667,
+            "mean_steps": 86.3076923076923,
+            "std_steps": 8.938977874667048,
+            "n_completions": 13,
+            "position": [
+              0.3698969317905676,
+              -0.9376166914620792
+            ],
+            "geometric_total": 2.0174039410119033,
+            "d_agent": 1.0063834816648796,
+            "d_goal": 1.0110204593470238
+          },
+          "green_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 427.25,
+            "std_steps": 92.74528289891622,
+            "n_completions": 3,
+            "position": [
+              -0.25354833976154095,
+              0.918413029744074
+            ],
+            "geometric_total": 3.9591641068132266,
+            "d_agent": 1.0063834808772154,
+            "d_goal": 2.952780625936011
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.6666666666666667,
+          "steps_diff": 340.9423076923077,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 97
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 37,
+        "int_color": "magenta",
+        "goal_color": "blue",
+        "layout_seed": 1301,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.6,
+            "mean_steps": 139.88888888888889,
+            "std_steps": 18.15026442687357,
+            "n_completions": 9,
+            "position": [
+              -1.4223245896189143,
+              0.3583995687176309
+            ],
+            "geometric_total": 2.6783265444284647,
+            "d_agent": 1.3568202876957258,
+            "d_goal": 1.321506256732739
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 354.2857142857143,
+            "std_steps": 108.20049417066221,
+            "n_completions": 3,
+            "position": [
+              1.2706872229581458,
+              0.3614488821059997
+            ],
+            "geometric_total": 4.958463187366379,
+            "d_agent": 1.3568202880485987,
+            "d_goal": 3.6016428993177807
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.39999999999999997,
+          "steps_diff": 214.3968253968254,
+          "geometrically_easier": "magenta_zone0"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone0",
+          "success": false,
+          "steps": 297
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 38,
+        "int_color": "yellow",
+        "goal_color": "magenta",
+        "layout_seed": 1308,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.6,
+            "mean_steps": 96.22222222222223,
+            "std_steps": 11.801862167356639,
+            "n_completions": 9,
+            "position": [
+              -0.797173164949551,
+              0.3976748480058174
+            ],
+            "geometric_total": 2.243219738397071,
+            "d_agent": 1.0611653493365603,
+            "d_goal": 1.1820543890605106
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 346.42857142857144,
+            "std_steps": 108.10690098609028,
+            "n_completions": 5,
+            "position": [
+              1.136976492829963,
+              -0.08421870408118134
+            ],
+            "geometric_total": 4.2182481360434005,
+            "d_agent": 1.0611653479920755,
+            "d_goal": 3.157082788051325
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.26666666666666666,
+          "steps_diff": 250.20634920634922,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 263
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 39,
+        "int_color": "yellow",
+        "goal_color": "blue",
+        "layout_seed": 1315,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.4,
+            "mean_steps": 109.16666666666667,
+            "std_steps": 38.52452321429675,
+            "n_completions": 6,
+            "position": [
+              -0.2754867501226952,
+              1.11026286442436
+            ],
+            "geometric_total": 2.1145540783922057,
+            "d_agent": 1.0693857913330902,
+            "d_goal": 1.0451682870591157
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 333.55555555555554,
+            "std_steps": 127.3002671823251,
+            "n_completions": 5,
+            "position": [
+              1.0775890397914123,
+              -0.519176859947257
+            ],
+            "geometric_total": 4.2257875171158465,
+            "d_agent": 1.0693857888137805,
+            "d_goal": 3.156401728302066
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.06666666666666671,
+          "steps_diff": 224.38888888888886,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 347
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 40,
+        "int_color": "yellow",
+        "goal_color": "magenta",
+        "layout_seed": 1322,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.5333333333333333,
+            "mean_steps": 116.125,
+            "std_steps": 19.02917168454791,
+            "n_completions": 8,
+            "position": [
+              -0.20602904805820343,
+              -0.8999195489008994
+            ],
+            "geometric_total": 2.348660854606771,
+            "d_agent": 1.155813856364431,
+            "d_goal": 1.1928469982423402
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 232.5,
+            "std_steps": 51.867619956963516,
+            "n_completions": 3,
+            "position": [
+              -0.37125456701564447,
+              1.4014240205902346
+            ],
+            "geometric_total": 4.643464671411887,
+            "d_agent": 1.1558138563418003,
+            "d_goal": 3.4876508150700865
+          },
+          "empirically_easier": "yellow_zone0",
+          "difficulty_diff": 0.3333333333333333,
+          "steps_diff": 116.375,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 254
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 41,
+        "int_color": "blue",
+        "goal_color": "yellow",
+        "layout_seed": 1329,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 106.5,
+            "std_steps": 10.012492197250394,
+            "n_completions": 4,
+            "position": [
+              -0.8882684912663819,
+              0.28632895093319893
+            ],
+            "geometric_total": 2.2259445217977527,
+            "d_agent": 1.1604299772495204,
+            "d_goal": 1.0655145445482321
+          },
+          "blue_zone1": {
+            "completion_rate": 0.5333333333333333,
+            "mean_steps": 335.54545454545456,
+            "std_steps": 113.68966022895489,
+            "n_completions": 8,
+            "position": [
+              0.8215393434487376,
+              0.9711651158612996
+            ],
+            "geometric_total": 3.9604850918727204,
+            "d_agent": 1.160429976861,
+            "d_goal": 2.8000551150117206
+          },
+          "empirically_easier": "blue_zone1",
+          "difficulty_diff": 0.26666666666666666,
+          "steps_diff": 229.04545454545456,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": false,
+          "steps": 165
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 42,
+        "int_color": "blue",
+        "goal_color": "magenta",
+        "layout_seed": 1336,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.4666666666666667,
+            "mean_steps": 103.71428571428571,
+            "std_steps": 25.03548502034825,
+            "n_completions": 7,
+            "position": [
+              -0.6225175127684045,
+              -0.9783653637433941
+            ],
+            "geometric_total": 2.292168960984652,
+            "d_agent": 1.0611017429050251,
+            "d_goal": 1.2310672180796272
+          },
+          "blue_zone1": {
+            "completion_rate": 0.3333333333333333,
+            "mean_steps": 386.5,
+            "std_steps": 86.75252157718529,
+            "n_completions": 5,
+            "position": [
+              0.23013574523472882,
+              0.7939810037914122
+            ],
+            "geometric_total": 4.13595019259945,
+            "d_agent": 1.0611017469665291,
+            "d_goal": 3.0748484456329215
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.13333333333333336,
+          "steps_diff": 282.7857142857143,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone1",
+          "success": false,
+          "steps": 152
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 43,
+        "int_color": "green",
+        "goal_color": "magenta",
+        "layout_seed": 1343,
+        "difficulty": {
+          "green_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 129.7,
+            "std_steps": 119.52995440474325,
+            "n_completions": 10,
+            "position": [
+              -1.2950981481555877,
+              -0.25925888282433285
+            ],
+            "geometric_total": 2.1715852519437506,
+            "d_agent": 1.1430826122086226,
+            "d_goal": 1.028502639735128
+          },
+          "green_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 243.5,
+            "std_steps": 126.98917276681505,
+            "n_completions": 2,
+            "position": [
+              0.28105781840695176,
+              1.1144505314566322
+            ],
+            "geometric_total": 4.259555485427544,
+            "d_agent": 1.1430826116359585,
+            "d_goal": 3.1164728737915857
+          },
+          "empirically_easier": "green_zone0",
+          "difficulty_diff": 0.5333333333333333,
+          "steps_diff": 113.80000000000001,
+          "geometrically_easier": "green_zone0"
+        },
+        "episode": {
+          "chosen_int": "green_zone0",
+          "success": true,
+          "steps": 287
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 44,
+        "int_color": "magenta",
+        "goal_color": "blue",
+        "layout_seed": 1350,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 96.0,
+            "std_steps": 4.183300132670378,
+            "n_completions": 4,
+            "position": [
+              -0.8481936285685406,
+              -1.0388296425278938
+            ],
+            "geometric_total": 2.437339895478625,
+            "d_agent": 1.4332517195896703,
+            "d_goal": 1.004088175888955
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.6,
+            "mean_steps": 294.0,
+            "std_steps": 58.81712799393171,
+            "n_completions": 9,
+            "position": [
+              1.528786010258475,
+              -0.20927157609530667
+            ],
+            "geometric_total": 4.824597564061547,
+            "d_agent": 1.4332517204060429,
+            "d_goal": 3.3913458436555035
+          },
+          "empirically_easier": "magenta_zone1",
+          "difficulty_diff": 0.3333333333333333,
+          "steps_diff": 198.0,
+          "geometrically_easier": "magenta_zone0"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone1",
+          "success": true,
+          "steps": 289
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 45,
+        "int_color": "yellow",
+        "goal_color": "blue",
+        "layout_seed": 1357,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.26666666666666666,
+            "mean_steps": 119.75,
+            "std_steps": 17.297037318569906,
+            "n_completions": 4,
+            "position": [
+              -1.1432427771297984,
+              1.020188103138304
+            ],
+            "geometric_total": 2.3878501396378797,
+            "d_agent": 1.2735777339330916,
+            "d_goal": 1.1142724057047881
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 286.72727272727275,
+            "std_steps": 31.700561822067296,
+            "n_completions": 10,
+            "position": [
+              1.0290217320740604,
+              -0.12617648945037685
+            ],
+            "geometric_total": 4.817578009385043,
+            "d_agent": 1.273577733479185,
+            "d_goal": 3.544000275905858
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.39999999999999997,
+          "steps_diff": 166.97727272727275,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone0",
+          "success": true,
+          "steps": 95
+        },
+        "chose_empirically_easier": false
+      },
+      {
+        "config_id": 46,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 1364,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.5333333333333333,
+            "mean_steps": 112.875,
+            "std_steps": 23.882197867868022,
+            "n_completions": 8,
+            "position": [
+              -1.005072951852375,
+              -1.2298095316262534
+            ],
+            "geometric_total": 2.3217248167455695,
+            "d_agent": 1.2806390589359689,
+            "d_goal": 1.0410857578096007
+          },
+          "blue_zone1": {
+            "completion_rate": 0.2,
+            "mean_steps": 199.85714285714286,
+            "std_steps": 55.57087770567954,
+            "n_completions": 3,
+            "position": [
+              0.12216082035244483,
+              1.0252549188655882
+            ],
+            "geometric_total": 4.520328618172323,
+            "d_agent": 1.2806390573520854,
+            "d_goal": 3.239689560820238
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.3333333333333333,
+          "steps_diff": 86.98214285714286,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": true,
+          "steps": 125
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 47,
+        "int_color": "blue",
+        "goal_color": "green",
+        "layout_seed": 1371,
+        "difficulty": {
+          "blue_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 154.6,
+            "std_steps": 24.29897117163605,
+            "n_completions": 10,
+            "position": [
+              0.3827559273159555,
+              -1.1567975345390036
+            ],
+            "geometric_total": 2.6087106847592443,
+            "d_agent": 1.3600935212802658,
+            "d_goal": 1.2486171634789782
+          },
+          "blue_zone1": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 251.5,
+            "std_steps": 9.5,
+            "n_completions": 2,
+            "position": [
+              0.8011075340512341,
+              1.2490416118543812
+            ],
+            "geometric_total": 4.8108818819534065,
+            "d_agent": 1.3600935231069902,
+            "d_goal": 3.4507883588464168
+          },
+          "empirically_easier": "blue_zone0",
+          "difficulty_diff": 0.5333333333333333,
+          "steps_diff": 96.9,
+          "geometrically_easier": "blue_zone0"
+        },
+        "episode": {
+          "chosen_int": "blue_zone0",
+          "success": true,
+          "steps": 214
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 48,
+        "int_color": "yellow",
+        "goal_color": "magenta",
+        "layout_seed": 1378,
+        "difficulty": {
+          "yellow_zone0": {
+            "completion_rate": 0.13333333333333333,
+            "mean_steps": 97.0,
+            "std_steps": 0.0,
+            "n_completions": 2,
+            "position": [
+              -0.7458321834300489,
+              0.9416039732071871
+            ],
+            "geometric_total": 2.171252344878397,
+            "d_agent": 1.0112071700374263,
+            "d_goal": 1.1600451748409706
+          },
+          "yellow_zone1": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 285.6923076923077,
+            "std_steps": 72.75288481236129,
+            "n_completions": 10,
+            "position": [
+              0.17958351197624228,
+              -0.8498596926416835
+            ],
+            "geometric_total": 3.9376618414400113,
+            "d_agent": 1.0112071701182952,
+            "d_goal": 2.926454671321716
+          },
+          "empirically_easier": "yellow_zone1",
+          "difficulty_diff": 0.5333333333333333,
+          "steps_diff": 188.69230769230768,
+          "geometrically_easier": "yellow_zone0"
+        },
+        "episode": {
+          "chosen_int": "yellow_zone1",
+          "success": true,
+          "steps": 313
+        },
+        "chose_empirically_easier": true
+      },
+      {
+        "config_id": 49,
+        "int_color": "magenta",
+        "goal_color": "yellow",
+        "layout_seed": 1385,
+        "difficulty": {
+          "magenta_zone0": {
+            "completion_rate": 0.6666666666666666,
+            "mean_steps": 194.63636363636363,
+            "std_steps": 150.53376107418728,
+            "n_completions": 10,
+            "position": [
+              -0.9560984825845367,
+              -0.626838042206251
+            ],
+            "geometric_total": 2.44296053519155,
+            "d_agent": 1.2903954165885247,
+            "d_goal": 1.1525651186030252
+          },
+          "magenta_zone1": {
+            "completion_rate": 0.06666666666666667,
+            "mean_steps": 204.75,
+            "std_steps": 7.39509972887452,
+            "n_completions": 1,
+            "position": [
+              -0.007918990633874256,
+              1.320770866488629
+            ],
+            "geometric_total": 4.447403944031052,
+            "d_agent": 1.2903954154439818,
+            "d_goal": 3.15700852858707
+          },
+          "empirically_easier": "magenta_zone0",
+          "difficulty_diff": 0.6,
+          "steps_diff": 10.113636363636374,
+          "geometrically_easier": "magenta_zone0"
+        },
+        "episode": {
+          "chosen_int": "magenta_zone1",
+          "success": false,
+          "steps": 206
+        },
+        "chose_empirically_easier": false
+      }
+    ],
+    "analysis": {
+      "n": 49,
+      "chose_easier": 28,
+      "p_easier": 0.5714285714285714,
+      "ci_low": 0.4327024751701555,
+      "ci_high": 0.6997689110104294,
+      "success_rate": 0.7346938775510204
+    }
+  }
+}
