@@ -43,7 +43,7 @@ The agent successfully identifies when a goal is blocked and redirects to the al
 | Success | Failure |
 |:-------:|:-------:|
 | Agent avoids blue, chooses yellow | Agent wanders, reaches neither |
-| ![Success](../paper_safety_results/run_1.png) | ![Failure](../paper_safety_results/run_5.png) |
+| ![Success](results/safety/run_2.png) | ![Failure](results/safety/run_4.png) |
 
 ---
 
