@@ -12,10 +12,12 @@
 | Optimality - geometric | ~50% optimal | 100 | [40%, 60%] |
 | Optimality - empirical difficulty | 68-76% easier | 50 | [54%, 86%] |
 | Equidistant (no distance cue) | 54-57% optimal | 50 | [40%, 70%] |
+| **Orientation bias** | **74% forward** | 95 | p < 0.0001 |
+| **Controlled orientation** | **58% optimal** | 84 | [48%, 68%] (not sig.) |
 | Value anticipation (controlled) | ~50% | 200 | - |
 | Probing: d_int_to_goal | R² = 0.08-0.18 | - | - |
 
-**Conclusion**: The agent succeeds through reactive heuristics, not planning. It uses perceptual cues (closest zone, blocking) when available, but cannot reason about multi-step consequences.
+**Conclusion**: The agent succeeds through reactive heuristics, not planning. It uses a **forward motion heuristic** (74% preference for initial heading direction) and perceptual cues (closest zone, blocking). When orientation bias is controlled, optimal choice drops to 58% (not significant). The agent cannot reason about multi-step consequences.
 
 ---
 
@@ -159,6 +161,47 @@ The "above-chance" empirical difficulty findings are confounded by:
 2. Non-random placement of optimal zones in the layout generation
 
 **Neither geometric nor empirical difficulty metrics support planning.** The agent uses spatial heuristics.
+
+---
+
+## 1.6 Orientation Bias Analysis
+
+**Question**: Is the "spatial bias" actually an orientation bias (forward motion preference)?
+
+### Hypothesis
+
+The agent doesn't have a LEFT/RIGHT preference in absolute coordinates. Instead, it has a **forward motion preference** - it goes in the direction it's initially facing.
+
+### Orientation Analysis Results
+
+| Metric | fresh_baseline | Significance |
+|--------|---------------|--------------|
+| Forward preference | **73.7%** | p < 0.0001 |
+| LEFT/RIGHT bias | 56.8% | Much weaker |
+| Chose forward when only one zone forward | **79.5%** | N=39 |
+
+**Key Finding**: The apparent "LEFT bias" (66%) is explained by initial heading direction. The agent prefers forward motion, and heading happens to correlate with zone position.
+
+### Controlled Orientation Test
+
+**Setup**: Set agent orientation to face the midpoint between the two intermediate zones. This way, both zones are equally "forward" and any preference must come from actual planning.
+
+**Results**:
+
+| Model | Optimal Choice | 95% CI | p-value | Spatial Bias |
+|-------|---------------|--------|---------|--------------|
+| fresh_baseline | **58.3%** | [48.3%, 67.7%] | 0.125 | 50%/50% L/R |
+
+**Critical Findings**:
+- Optimal choice rate is **NOT statistically significant** (CI includes 50%)
+- Spatial bias is **completely eliminated** (50%/50% LEFT/RIGHT)
+- When forward bias is controlled, the agent chooses essentially at random
+
+### Implications
+
+1. The "spatial bias" finding was actually measuring **orientation bias**
+2. The agent uses a simple forward motion heuristic, not goal-directed planning
+3. When this heuristic is neutralized, no evidence of planning remains
 
 ---
 
@@ -311,33 +354,39 @@ This suggests:
 | Safety task (80%) | Perceptual pattern matching | No |
 | Optimality task (~50%) | Random with geometric labels | No |
 | Equidistant test (~50-60%) | Loses preference without distance cue | No |
-| Spatial bias analysis | Arbitrary L/R preferences, not goal-directed | No |
+| Orientation bias (74%) | Forward motion heuristic, not L/R | No |
+| Controlled orientation (58%) | Random when forward bias removed (p=0.125) | No |
 | Probing (R² 0.08-0.18) | Missing chained distance representations | No |
 | Value function (~50% controlled) | First-step dominated | No |
 | Training interventions | Probe R² up but behavior unchanged | No |
 
 ## 5.2 The Heuristic Hierarchy
 
-The agent uses a hierarchy of spatial heuristics:
+The agent uses a hierarchy of reactive heuristics:
 
-1. **Closest zone** - When one intermediate is clearly closer, prefer it
-2. **Spatial position bias** - When distances are similar, prefer certain regions (LEFT for fresh_baseline, RIGHT for combined)
+1. **Forward motion** - Strong preference (74%) to go in the direction initially facing
+2. **Closest zone** - When one intermediate is clearly closer, prefer it
 3. **Random** - When above heuristics don't differentiate
+
+Note: The previously identified "spatial position bias" (LEFT/RIGHT preference) was actually **orientation bias** in disguise. When we control for initial heading direction, the spatial bias disappears.
 
 These heuristics explain the results:
 - OPTVAR ~50%: Closest-zone heuristic produces random-looking results because agent starts closer to non-optimal
-- OPTVAR 68% empirical: Shared spatial bias between agent choice and completion measurement
-- OPTEQ ~54%: Spatial position bias aligns with goal direction due to layout confounds
+- OPTVAR 68% empirical: Forward motion bias correlates with layout generation patterns
+- OPTEQ ~54%: Forward motion bias aligns with zone positions due to heading distribution
+- OPTEQ controlled orientation 58%: When forward bias removed, essentially random (p=0.125)
 
 ## 5.3 Implications
 
-1. **Planning is not emergent from task success**: Even when optimal planning would help, RL finds alternative solutions (spatial heuristics)
+1. **Planning is not emergent from task success**: Even when optimal planning would help, RL finds alternative solutions (reactive heuristics)
 
-2. **Behavioral testing must control for confounds**: The ~68% "empirically easier" rate looked significant but is explained by spatial bias confounds. After controlling for position, goal direction has NO effect on choice.
+2. **Behavioral testing must control for confounds**: The ~68% "empirically easier" rate looked significant but is explained by orientation bias. After controlling for initial heading (facing midpoint), the agent chooses at random (58%, not significant).
 
-3. **Auxiliary supervision improves representations but not behavior**: Higher probe R² doesn't translate to better decisions
+3. **"Spatial bias" was orientation bias**: The apparent LEFT/RIGHT preference was actually a **forward motion preference** (74%). When we control for heading direction, spatial bias disappears entirely (50%/50%).
 
-4. **Different models learn different biases**: fresh_baseline has a LEFT bias, combined has a RIGHT bias - suggesting these are arbitrary learned preferences, not principled strategies
+4. **Auxiliary supervision improves representations but not behavior**: Higher probe R² doesn't translate to better decisions
+
+5. **The forward motion heuristic is robust**: The agent strongly prefers to go in the direction it's initially facing. This is likely learned from the training distribution where forward motion is often rewarded.
 
 ---
 
@@ -350,6 +399,8 @@ These heuristics explain the results:
 | `analysis/optimality_test_equidistant.py` | Equidistant optimality test |
 | `analysis/empirical_difficulty_analysis.py` | Empirical difficulty measurement |
 | `analysis/analyze_empirical_difficulty.py` | Spatial bias and confound analysis |
+| `analysis/analyze_orientation_bias.py` | Orientation (forward) bias analysis |
+| `analysis/optimality_test_controlled_orientation.py` | Optimality test with controlled orientation |
 | `analysis/preview_optvar_maps.py` | Preview map layouts |
 
 ## Custom Environments
@@ -375,7 +426,9 @@ These heuristics explain the results:
 |-----------|----------|
 | `results/safety/` | Safety task trajectories |
 | `results/optimality_analysis/` | Optimality test results |
-| `results/empirical_difficulty/` | Empirical difficulty analysis |
+| `results/empirical_difficulty/` | Empirical difficulty and orientation bias analysis |
+| `results/empirical_difficulty/orientation_bias_*.csv` | Orientation bias raw data |
+| `results/empirical_difficulty/controlled_orientation_*.csv` | Controlled orientation test data |
 
 ---
 

@@ -13,7 +13,8 @@
 | Safety (avoid obstacles) | **80%** correct | Pattern recognition works |
 | Optimality (choose better path) | **~50%** (random) | No multi-step reasoning |
 | Equidistant (remove distance cue) | **~50%** (random) | Confirms no planning |
-| Spatial bias analysis | **L/R preference** | Arbitrary, not goal-directed |
+| Orientation bias analysis | **74%** forward | Prefers initial heading direction |
+| Controlled orientation test | **58%** (not sig.) | Random when forward bias removed |
 | Value function lookahead | **~50%** (random) | First-step dominated |
 
 ---
@@ -71,18 +72,32 @@ The agent does show some preference for empirically easier paths, but this disap
 
 ## 3.1 What About the 68% "Empirically Easier" Rate?
 
-The ~68% rate seemed significant, but it's confounded by **spatial position bias**.
+The ~68% rate seemed significant, but it's confounded by **orientation bias** (forward motion preference).
 
-| Model | Spatial Bias |
-|-------|-------------|
-| fresh_baseline | **LEFT** (66% chose x<0) |
-| combined_aux | **RIGHT** (61% chose x>0) |
+### The "Spatial Bias" is Actually Orientation Bias
 
-**Key finding**: After controlling for spatial position, goal direction has NO effect on choice (p = 0.49).
+| Model | LEFT/RIGHT Bias | Forward Preference |
+|-------|-----------------|-------------------|
+| fresh_baseline | 57% LEFT | **74%** forward (p < 0.0001) |
 
-The layout generation places toward-goal zones more often on the LEFT (70% vs 34%). fresh_baseline's LEFT bias aligns with this, creating a spurious "optimal" choice appearance.
+**Key finding**: The agent doesn't have a LEFT/RIGHT preference - it has a **forward motion** preference. It goes in the direction it's initially facing.
 
-**Different models learn different arbitrary biases** - neither is planning.
+- When only one zone is forward (<90° from heading): agent chose it **79.5%** of the time
+- The apparent "LEFT bias" is explained by initial heading distribution
+
+### Controlled Orientation Test
+
+When we control for forward bias by setting the agent to face the midpoint between zones:
+
+| Model | Optimal Choice | 95% CI | Spatial Bias |
+|-------|---------------|--------|--------------|
+| fresh_baseline | **58.3%** | [48.3%, 67.7%] | 50%/50% L/R |
+
+- Binomial test vs 50%: **p = 0.125** (NOT significant)
+- Confidence interval **includes 50%** (random)
+- Spatial bias **eliminated** when orientation controlled
+
+**Conclusion**: The agent uses a forward motion heuristic. When this is controlled, it chooses essentially at random.
 
 ---
 
@@ -134,11 +149,12 @@ We tried several approaches to induce planning:
 | Safety task success (80%) | No - it's perceptual |
 | Optimality task (~50%) | No - random |
 | Equidistant test (~50%) | No - loses without distance cue |
-| Spatial bias analysis | No - arbitrary L/R preferences |
+| Orientation bias (74% forward) | No - forward motion heuristic |
+| Controlled orientation (58%, not sig.) | No - random when bias removed |
 | Probing (low R² for computed features) | No - missing representations |
 | Value function (first-step dominated) | No - no lookahead |
 | Training interventions | No - didn't help |
 
 **The DeepLTL agent succeeds through reactive heuristics, not planning.**
 
-It follows sequential goals ("do A then B") but doesn't reason about which choice now will make future steps easier. When perceptual cues are available (blocking, closest zone), it uses them. When they're not, it falls back to **arbitrary spatial biases** (fresh_baseline prefers LEFT, combined prefers RIGHT).
+It follows sequential goals ("do A then B") but doesn't reason about which choice now will make future steps easier. When perceptual cues are available (blocking, closest zone), it uses them. When they're not, it falls back to a **forward motion heuristic** - preferring to go in the direction it's initially facing. When this bias is controlled, the agent chooses randomly.
