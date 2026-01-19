@@ -134,6 +134,8 @@ ltl_tasks = {
     'Ltl2.hard3': {},  # diagonal_trap
     'Ltl2.hard4': {},  # timeout_trap
     'Ltl2.hardmix': {},  # randomly samples from all hard configs
+    'Ltl2.optvar': {},  # varied optimality test (2 intermediate, 1 goal)
+    'Ltl2.opteq': {},   # equidistant optimality test (both intermediates same distance from agent)
 }
 __combine(ltl_tasks, robots, max_episode_steps=None)
 

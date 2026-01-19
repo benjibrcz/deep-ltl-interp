@@ -7,13 +7,15 @@
 | Planning Type | Task | Baseline Result | After Incentive Training |
 |--------------|------|-----------------|--------------------------|
 | **Local** (safety) | Choose unblocked goal | 80% correct | - |
-| **Global** (optimality) | Choose path-minimizing intermediate | 10-20% correct | **40% correct** |
+| **Global** (optimality) | Choose path-minimizing intermediate | ~50% (random) | ~50% (random) |
+| **Equidistant** (no myopic cue) | Choose when both intermediates same distance | 54% optimal | 53% optimal |
 
 **Key Findings**:
 1. The baseline agent succeeds at local planning (pattern matching) but fails at global planning (requires world model)
-2. Training on harder environments alone doesn't induce planning - the agent finds alternative solutions
-3. **Auxiliary supervision on chained distances doubles planning performance** (20% → 40%)
-4. Combining auxiliary + transition prediction achieves best overall results (40% optimal, 90% task success)
+2. **On varied maps with proper zone separation, both agents show ~50% optimal choice** - essentially random between optimal and myopic
+3. **When both intermediates are equidistant from the agent, choice is ~50/50** - confirming the model relies on "closest intermediate" heuristic, not path planning
+4. Training on harder environments alone doesn't induce planning - the agent finds alternative solutions
+5. Neither baseline nor auxiliary-trained models show evidence of computing multi-step paths
 
 ---
 
@@ -64,9 +66,16 @@ Myopic path:  agent → blue2 → green = 4.89 total distance
 Savings from optimal: 46%
 ```
 
-#### Results: 10-20% Optimal, 80-90% Myopic
+#### Results: ~50% Optimal, ~50% Myopic (Updated Jan 2025)
 
-The agent consistently chooses the closer blue zone, ignoring that this leads to a much longer total path.
+Testing on varied maps with proper zone separation (min 1.0 distance between zones):
+
+| Model | Optimal | Myopic | Success |
+|-------|---------|--------|---------|
+| fresh_baseline | 50% | 50% | 93% |
+| combined_aux02_trans01 | 49% | 51% | 75% |
+
+The agent's choices appear essentially **random** between optimal and myopic when tested across many varied configurations.
 
 **Why this fails**: Choosing optimally requires computing chained distances:
 - d(agent → blue1) + d(blue1 → green) vs
@@ -76,20 +85,22 @@ This requires simulating "if I go to blue1, where will I be, and how far to gree
 
 ---
 
-### Experiment 3: Controlling for Directional Bias
+### Experiment 3: Equidistant Optimality Test (Updated Jan 2025)
 
-**Question**: Is the 10% optimal rate due to partial planning ability, or just coincidence?
+**Question**: When the "myopic" cue (closer to agent) is removed, can the agent choose based on full path length?
 
-**Setup**: Both blues placed equidistant from the agent. If the agent plans, it should choose blue closer to green.
+**Setup**: Custom `PointLtl2-v0.opteq` environment where both intermediate zones are placed at the **exact same distance** from the agent (within 0.05 tolerance). The only way to choose optimally is to consider the full path to the goal.
 
-#### Results
+#### Results: Random Choice (~50/50)
 
-| Configuration | Optimal Blue Location | Agent's Choice | "Optimal" Rate |
-|--------------|----------------------|----------------|----------------|
-| Original | Lower-left | Upper-right (95%) | 5% |
-| Swapped (green moved) | Upper-right | Upper-right (95%) | 95% |
+| Model | Optimal | Suboptimal | Success |
+|-------|---------|------------|---------|
+| fresh_baseline | 54% | 46% | 93% |
+| combined_aux02_trans01 | 53% | 45% | 78% |
 
-The agent goes upper-right ~95% of the time regardless of which blue is optimal. Any apparent "optimal" behavior is coincidental alignment with this directional bias, not planning.
+When the "closest intermediate" heuristic cannot differentiate between options, **both agents choose essentially at random**.
+
+**Key Insight**: This confirms the model does NOT compute multi-step paths. It relies entirely on the myopic heuristic of "go to the nearest intermediate zone." When that cue is absent, it guesses.
 
 ---
 
@@ -230,40 +241,46 @@ The combined approach maintains 40% optimal planning while achieving 90% task su
 | Capability | Result | Mechanism |
 |------------|--------|-----------|
 | Local planning (safety) | 80% success | Pattern recognition |
-| Global planning (optimality) | 20% success | Would require world model |
-| Apparent optimal choices | Directional bias | Behavioral heuristic |
+| Global planning (optimality) | ~50% (random) | Would require world model |
+| Equidistant test | ~50% (random) | No planning, just guessing |
 
-### 2. Environmental Difficulty Doesn't Induce Planning
+### 2. The ~50% "Optimal" Rate is Random, Not Planning
 
-Training on harder environments improves robustness (100% task success) but doesn't improve planning (still 20% optimal). The network finds alternative solutions.
+On varied maps with proper zone separation:
+- Both baseline and auxiliary-trained agents show ~50% optimal choice
+- When intermediates are equidistant (no myopic cue), choice is still ~50/50
+- This is consistent with random selection, not partial planning ability
 
-### 3. Auxiliary Supervision Works
+### 3. Environmental Difficulty Doesn't Induce Planning
 
-| Intervention | Optimal Rate | Improvement |
-|--------------|:------------:|:-----------:|
-| Baseline | 20% | - |
-| Hard environment training | 20% | 0% |
-| Step penalty | 10% | -50% |
-| **Aux loss (chained dist)** | **40%** | **+100%** |
-| Combined (aux + trans) | 40% | +100% |
+Training on harder environments improves robustness but doesn't improve planning. The network finds alternative solutions.
 
-Direct supervision on planning-relevant quantities (chained distances) doubles planning performance.
+### 4. Auxiliary Supervision Does NOT Induce Planning
 
-### 4. 40% Ceiling Suggests Architectural Limits
+| Model | Optimal Rate (Varied Maps) | Optimal Rate (Equidistant) |
+|-------|:--------------------------:|:--------------------------:|
+| fresh_baseline | 50% | 54% |
+| combined_aux02_trans01 | 49% | 53% |
 
-Even with direct supervision, the agent only achieves 40% optimal choice rate. This suggests:
-- Network architecture may limit planning ability
-- More training or different approaches needed
-- Fundamental difficulty in learning counterfactual reasoning
+Despite auxiliary supervision on chained distances, the trained model shows no improvement in actual planning behavior.
+
+### 5. Probing Shows Weak Planning Representations
+
+| Feature | R² Score |
+|---------|----------|
+| d_agent_to_int (observable) | 0.43-0.54 |
+| d_int_to_goal (requires computation) | **0.08-0.18** |
+
+The model does not encode the chained distances needed for optimal planning.
 
 ---
 
 ## Implications for Interpretability
 
-1. **Planning is not emergent from task success**: Even when optimal planning would help, RL finds alternative solutions
-2. **Representations must be explicitly incentivized**: Chained distances won't emerge just because they'd be useful
-3. **Behavioral testing alone is insufficient**: The agent improved on metrics without developing the target capability
-4. **Auxiliary supervision is effective**: Can induce specific representations through additional loss terms
+1. **Planning is not emergent from task success**: Even when optimal planning would help, RL finds alternative solutions (myopic heuristics)
+2. **Behavioral testing must control for confounds**: The ~50% "optimal" rate initially looked like partial planning, but equidistant testing reveals it's random
+3. **Auxiliary supervision improves probe R² but not behavior**: Higher representation quality doesn't guarantee better decision-making
+4. **The myopic heuristic is robust**: When both intermediates are equidistant, the agent doesn't fall back to planning - it just guesses
 
 ---
 
@@ -272,10 +289,16 @@ Even with direct supervision, the agent only achieves 40% optimal choice rate. T
 ### Experiments
 | File | Purpose |
 |------|---------|
-| `experiments/safety_test.py` | Safety planning test |
-| `experiments/optimality_test.py` | Optimality planning test |
-| `experiments/equidistant_test.py` | Directional bias control |
-| `experiments/planning_test_battery.py` | Local vs global battery |
+| `analysis/optimality_test_clean.py` | Optimality test with varied maps/colors |
+| `analysis/optimality_test_equidistant.py` | Equidistant optimality test |
+| `analysis/preview_optvar_maps.py` | Preview optvar map layouts |
+| `analysis/preview_opteq_maps.py` | Preview equidistant map layouts |
+
+### Custom Environments
+| File | Purpose |
+|------|---------|
+| `src/.../ltl_optimality_varied.py` | PointLtl2-v0.optvar environment |
+| `src/.../ltl_optimality_equidistant.py` | PointLtl2-v0.opteq environment |
 
 ### Probing
 | File | Purpose |

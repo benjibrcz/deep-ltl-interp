@@ -29,6 +29,8 @@ from safety_gymnasium.tasks.ltl.ltl_hard_optimality import (
     LtlHardOptimality4,
     LtlHardOptimalityMixed,
 )
+from safety_gymnasium.tasks.ltl.ltl_optimality_varied import LtlOptimalityVaried
+from safety_gymnasium.tasks.ltl.ltl_optimality_equidistant import LtlOptimalityEquidistant
 from safety_gymnasium.tasks.safe_navigation.button.button_level0 import ButtonLevel0
 from safety_gymnasium.tasks.safe_navigation.button.button_level1 import ButtonLevel1
 from safety_gymnasium.tasks.safe_navigation.button.button_level2 import ButtonLevel2
