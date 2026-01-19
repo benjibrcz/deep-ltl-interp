@@ -118,6 +118,50 @@ This requires simulating "if I go to blue1, where will I be, and how far to gree
 
 ---
 
+## 1.5 What Determines "Empirical Difficulty"?
+
+We investigated why the agent appears to choose "empirically easier" options at rates above chance (68-76% in OPTVAR).
+
+### Finding: Spatial Position Bias Confounds the Results
+
+| Model | OPTEQ Choice | Spatial Bias |
+|-------|--------------|--------------|
+| fresh_baseline | 54% "optimal" | **LEFT** (66% chose x<0) |
+| combined_aux02_trans01 | 47% "optimal" | **RIGHT** (61% chose x>0) |
+
+**Critical Analysis:** After controlling for spatial position:
+- Goal direction (d_goal) has NO unique effect on choice (p = 0.49)
+- Spatial position (pos_x) IS significant (p = 0.0002)
+
+### Layout Generation Confound
+
+In the OPTEQ environment:
+- **70%** of toward-goal zones are on the LEFT
+- **34%** of away-from-goal zones are on the LEFT
+- Correlation: d_goal ~ pos_x = **0.41***
+
+This means fresh_baseline's LEFT bias aligns with goal direction, creating a spurious "optimal" choice rate.
+
+### Completion Rate Has No Geometric Correlates (OPTVAR)
+
+| Feature | Correlation with Completion Rate | p-value |
+|---------|----------------------------------|---------|
+| d_agent | r = -0.10 | 0.33 |
+| d_goal | r = -0.04 | 0.66 |
+| geometric_total | r = -0.07 | 0.52 |
+
+In OPTVAR, completion rate (which defines "empirically easier") has **NO correlation with ANY geometric feature**. The 68% "chose easier" rate reflects a shared heuristic between agent behavior and the completion measurement - both driven by the same spatial factors.
+
+### Interpretation
+
+The "above-chance" empirical difficulty findings are confounded by:
+1. Arbitrary spatial biases in each model (LEFT vs RIGHT preference)
+2. Non-random placement of optimal zones in the layout generation
+
+**Neither geometric nor empirical difficulty metrics support planning.** The agent uses spatial heuristics.
+
+---
+
 # Part 2: Probing Analysis
 
 ## 2.1 What Does the Model Encode?
@@ -267,27 +311,33 @@ This suggests:
 | Safety task (80%) | Perceptual pattern matching | No |
 | Optimality task (~50%) | Random with geometric labels | No |
 | Equidistant test (~50-60%) | Loses preference without distance cue | No |
+| Spatial bias analysis | Arbitrary L/R preferences, not goal-directed | No |
 | Probing (R² 0.08-0.18) | Missing chained distance representations | No |
 | Value function (~50% controlled) | First-step dominated | No |
 | Training interventions | Probe R² up but behavior unchanged | No |
 
-## 5.2 The Myopic Heuristic
+## 5.2 The Heuristic Hierarchy
 
-The agent appears to use a simple heuristic: **go to the closest intermediate zone**.
+The agent uses a hierarchy of spatial heuristics:
 
-- When this heuristic happens to align with the optimal choice, the agent looks like it's planning
-- When it doesn't (equidistant test), the agent guesses randomly
-- The ~68% "optimal" rate with empirical labels reflects correlation between "closest" and "empirically easier", not planning
+1. **Closest zone** - When one intermediate is clearly closer, prefer it
+2. **Spatial position bias** - When distances are similar, prefer certain regions (LEFT for fresh_baseline, RIGHT for combined)
+3. **Random** - When above heuristics don't differentiate
+
+These heuristics explain the results:
+- OPTVAR ~50%: Closest-zone heuristic produces random-looking results because agent starts closer to non-optimal
+- OPTVAR 68% empirical: Shared spatial bias between agent choice and completion measurement
+- OPTEQ ~54%: Spatial position bias aligns with goal direction due to layout confounds
 
 ## 5.3 Implications
 
-1. **Planning is not emergent from task success**: Even when optimal planning would help, RL finds alternative solutions (myopic heuristics)
+1. **Planning is not emergent from task success**: Even when optimal planning would help, RL finds alternative solutions (spatial heuristics)
 
-2. **Behavioral testing must control for confounds**: The ~50% rate with geometric labels looked like chance, but empirical difficulty revealed a heuristic. The equidistant test controls for this.
+2. **Behavioral testing must control for confounds**: The ~68% "empirically easier" rate looked significant but is explained by spatial bias confounds. After controlling for position, goal direction has NO effect on choice.
 
 3. **Auxiliary supervision improves representations but not behavior**: Higher probe R² doesn't translate to better decisions
 
-4. **The lack of lookahead is robust**: Not a training signal problem - may require architectural changes
+4. **Different models learn different biases**: fresh_baseline has a LEFT bias, combined has a RIGHT bias - suggesting these are arbitrary learned preferences, not principled strategies
 
 ---
 
@@ -299,6 +349,7 @@ The agent appears to use a simple heuristic: **go to the closest intermediate zo
 | `analysis/optimality_test_clean.py` | Optimality test with varied maps |
 | `analysis/optimality_test_equidistant.py` | Equidistant optimality test |
 | `analysis/empirical_difficulty_analysis.py` | Empirical difficulty measurement |
+| `analysis/analyze_empirical_difficulty.py` | Spatial bias and confound analysis |
 | `analysis/preview_optvar_maps.py` | Preview map layouts |
 
 ## Custom Environments
