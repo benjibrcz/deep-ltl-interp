@@ -40,13 +40,10 @@
 
 The agent successfully identifies when a goal is blocked and redirects to the alternative. This works because blocking detection is **perceptual** - it's a pattern in the current observation (obstacle between agent and goal), not a simulation of future states.
 
-**Success**: Agent detects green is blocked by blue zones, chooses yellow instead:
-
-![Safety planning success](../paper_safety_results/run_1.png)
-
-**Failure**: Agent fails to reach either goal:
-
-![Safety planning failure](../paper_safety_results/run_5.png)
+| Success | Failure |
+|:-------:|:-------:|
+| Agent avoids blue, chooses yellow | Agent wanders, reaches neither |
+| ![Success](../paper_safety_results/run_1.png) | ![Failure](../paper_safety_results/run_5.png) |
 
 ---
 
