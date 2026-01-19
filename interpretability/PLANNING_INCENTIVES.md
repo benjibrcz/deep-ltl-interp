@@ -225,6 +225,95 @@ Use step penalty + auxiliary prediction or transition prediction together.
 
 ## Success Criteria
 
-1. **Behavioral**: Optimal choice rate on global planning tests should increase from 20% to >50%
-2. **Representational**: Chained distance probe R² should increase from ~0.4 to >0.7
+1. **Behavioral**: Optimal choice rate on global planning tests should increase from ~50% (random) to >70%
+2. **Representational**: Chained distance probe R² should increase from ~0.1-0.2 to >0.5
 3. **Generalization**: Improved planning should transfer to novel zone configurations
+
+---
+
+## Experimental Results
+
+### Training on Hard Optimality Maps
+
+**Question**: Can we induce planning by training on environments where myopic behavior leads to much longer paths?
+
+**Setup**: Created 4 "hard optimality" map configurations where:
+- Each color has 2 zones at strategic positions
+- Myopic choice leads to 24-81% longer total paths
+- Fine-tuned from existing agent for 2M steps
+
+**Results**: Improved Robustness, NOT Planning
+
+| Metric | Before Training | After Training |
+|--------|-----------------|----------------|
+| Task Success Rate | 30% | **100%** |
+| Optimal Choice Rate | ~50% | ~50% |
+| Episode Length | 240 steps | 122 steps |
+
+The agent learned to complete tasks faster and more reliably, but its planning behavior didn't change.
+
+**Interpretation**: Training on hard environments doesn't induce planning. The agent found an alternative optimization path - became faster at executing its existing (myopic) strategy without developing chained distance computation.
+
+---
+
+### Step Penalty Results
+
+**Result**: Made agent faster but NOT smarter
+
+| Metric | Without Penalty | With Penalty (0.002) |
+|--------|-----------------|----------------------|
+| Episode Length | 122 steps | **95 steps** |
+| Optimal Choice | ~50% | ~50% |
+
+The agent learned to move faster but planning didn't improve.
+
+---
+
+### Auxiliary Chained Distance Prediction Results
+
+We swept auxiliary loss coefficients:
+
+| aux_loss_coef | Probe R² | Optimal Choice Rate |
+|---------------|----------|:-------------------:|
+| 0.0 (baseline) | 0.315 | ~50% |
+| 0.1 | 0.340 | ~50% |
+| 0.15 | 0.350 | ~50% |
+| **0.2** | **0.356** | ~50% |
+| 0.3 | 0.320 | ~50% |
+
+The auxiliary loss improved probe R² scores but did NOT improve actual planning behavior on varied maps.
+
+---
+
+### Transition Prediction Loss Results
+
+| Model | Probe R² | Optimal Choice | Task Success |
+|-------|----------|:--------------:|:------------:|
+| Baseline | 0.315 | ~50% | 93% |
+| Transition Loss (0.1) | 0.361 | ~50% | 78% |
+
+Despite learning to predict next-state features, this didn't translate to better planning decisions.
+
+---
+
+### Combined Approach Results
+
+| Model | Chained Distance R² | Optimal Choice | Task Success |
+|-------|:-------------------:|:--------------:|:------------:|
+| Baseline | 0.315 | ~50% | 93% |
+| Aux Loss (0.2) | 0.356 | ~50% | - |
+| Trans Loss (0.1) | 0.361 | ~50% | 78% |
+| **Combined** | **0.405** | ~50% | 75% |
+
+The combined model has the strongest planning representations (R²=0.405), but this does NOT translate to improved planning behavior on varied maps or equidistant tests.
+
+---
+
+## Key Conclusion
+
+**Improving probe R² does not improve planning behavior.** All approaches improved the model's ability to encode chained distances (as measured by linear probes), but none improved actual decision-making on optimality tasks.
+
+This suggests:
+1. The model may encode the information but not use it for decisions
+2. Planning requires more than just having the right representations
+3. The policy network may need architectural changes to leverage planning information
