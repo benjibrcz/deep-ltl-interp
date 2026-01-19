@@ -40,7 +40,13 @@
 
 The agent successfully identifies when a goal is blocked and redirects to the alternative. This works because blocking detection is **perceptual** - it's a pattern in the current observation (obstacle between agent and goal), not a simulation of future states.
 
-![Safety planning trajectories](paper_safety_results/run_1.png)
+**Success**: Agent detects green is blocked by blue zones, chooses yellow instead:
+
+![Safety planning success](../paper_safety_results/run_1.png)
+
+**Failure**: Agent fails to reach either goal:
+
+![Safety planning failure](../paper_safety_results/run_5.png)
 
 ---
 
@@ -62,6 +68,8 @@ The agent successfully identifies when a goal is blocked and redirects to the al
 The agent's choices are essentially **random** between optimal and myopic across varied map configurations.
 
 ![Optimality test trajectories](results/optimality_analysis/optimality_test_fresh_baseline.png)
+
+*Green trajectories = optimal choice, orange = myopic choice*
 
 **Why this fails**: Choosing optimally requires computing chained distances:
 - d(agent → blue1) + d(blue1 → green) vs
