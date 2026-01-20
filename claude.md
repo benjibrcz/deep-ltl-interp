@@ -21,9 +21,13 @@ This is a research project studying **deep reinforcement learning agents trained
 
 ### Experiments
 - `experiments/ppo/PointLtl2-v0/` - Trained models
-  - `fresh_baseline/` - Standard trained agent
+  - `fresh_baseline/` - Standard trained agent (15M steps, discount=0.998) - **91% success, 58% optimal**
   - `combined_aux02_trans01/` - Agent with auxiliary losses
   - `aux_loss_*` - Various auxiliary loss experiments
+  - `extended_baseline/` - Extended training (30M steps, discount=0.998) - **95% success, 59% optimal**
+  - `twostep_lowdiscount/` - 2-step curriculum, d=0.95 - **38% success** (too aggressive)
+  - `opt_d095_mixed/` - Mixed curriculum (75% 2-step), d=0.95 - **64% success** (unstable)
+  - `opt_d099_mixed/` - Mixed curriculum, d=0.99 - **85% success, 52% optimal** (no planning)
 
 ## Environment Setup
 
@@ -91,6 +95,51 @@ When both intermediate zones are at the SAME distance from the agent (removing t
 - **Both agents are essentially RANDOM** (~50/50) when the distance cue is removed
 - This confirms the model does NOT compute multi-step paths; it relies entirely on the "closest intermediate" heuristic
 
+### Spatial Bias Analysis (Jan 2025)
+The ~68% "chose empirically easier" rate is NOT evidence of planning - it's confounded by spatial bias:
+- **fresh_baseline**: LEFT bias (66% chose x<0)
+- **combined_aux02_trans01**: RIGHT bias (61% chose x>0)
+- After controlling for spatial position, goal direction has NO effect (p=0.49)
+- Different models learn different arbitrary biases - neither is planning
+- See `interpretability/results/empirical_difficulty/ANALYSIS_SUMMARY.md`
+
+### Orientation Bias Analysis (Jan 2025)
+**KEY FINDING**: The "spatial bias" is actually an **orientation bias** - the agent prefers forward motion.
+- **Forward preference: 73.7%** (p < 0.0001) - agent goes in direction it's initially facing
+- When only one zone is forward, agent chose it **79.5%** of the time
+- The LEFT/RIGHT bias (56.8%) is much weaker and explained by heading direction
+- See `interpretability/analysis/analyze_orientation_bias.py`
+
+### Controlled Orientation Test (Jan 2025)
+When controlling for orientation bias (agent faces midpoint between zones):
+- **Optimal choice rate: 58.3%** (95% CI: [48.3%, 67.7%]) - NOT significant (p=0.125)
+- **Spatial bias eliminated**: LEFT 50% / RIGHT 50%
+- **Conclusion**: Without forward bias, agent shows NO planning - essentially random
+- See `interpretability/analysis/optimality_test_controlled_orientation.py`
+
+### DeepLTL Author Insights (Jan 2025)
+The author confirmed ~50% optimality rate and identified likely causes:
+1. **High discount (0.998)**: Return differences between optimal/suboptimal are minimal
+2. **Curriculum bias**: Starting with 1-step reach biases toward "nearest zone" heuristic
+3. **Agent orientation**: Forward motion preference may affect zone choice
+
+### Curriculum & Discount Intervention Results (Jan 2025)
+Tested whether curriculum and discount changes could induce planning (based on author's suggestions):
+
+| Experiment | Discount | Curriculum | Task Success | Optimal Choice |
+|------------|----------|------------|--------------|----------------|
+| fresh_baseline | 0.998 | 1-step start | 91% | 58% (p=0.125) |
+| extended_baseline | 0.998 | 1-step start (30M) | 95% | 59% (p=0.093) |
+| twostep_lowdiscount | 0.95 | 2-step only | 38% | - (too low) |
+| opt_d095_mixed | 0.95 | 75% 2-step + 25% 1-step | 64% | - |
+| **opt_d099_mixed** | **0.99** | **mixed** | **85%** | **52% (p=0.764)** |
+
+**KEY FINDING**: Curriculum and discount interventions do NOT improve planning.
+- The opt_d099_mixed model achieves 85% task success but shows **52% optimal choice** - indistinguishable from random (p=0.764)
+- Extended training (30M steps) doesn't help either
+- The agent finds heuristic solutions regardless of training curriculum
+- See `training_curves.png` and `training_curves_mixed.png` for learning curves
+
 ### Paper Evaluation Results
 fresh_baseline performance on paper specifications (φ6-φ11):
 - φ6: 97% success
@@ -105,9 +154,16 @@ fresh_baseline performance on paper specifications (φ6-φ11):
 ### Analysis Scripts
 - `interpretability/analysis/optimality_test_clean.py` - Optimality analysis with varied maps/colors
 - `interpretability/analysis/optimality_test_equidistant.py` - Equidistant optimality test
+- `interpretability/analysis/analyze_empirical_difficulty.py` - Spatial bias and confound analysis
+- `interpretability/analysis/analyze_orientation_bias.py` - **Orientation (forward) bias analysis**
+- `interpretability/analysis/optimality_test_controlled_orientation.py` - **Optimality test with controlled orientation**
 - `interpretability/analysis/preview_optvar_maps.py` - Preview map layouts before running eval
 - `interpretability/analysis/preview_opteq_maps.py` - Preview equidistant map layouts
 - `interpretability/probing/probe_optvar_planning.py` - Probing for planning representations on optvar env
+
+### Training Scripts
+- `run_zones.py` - Standard training script (15M steps, discount=0.998)
+- `run_optimality_sweep.py` - Sweep script for optimality experiments
 
 ### Environment Registration
 - `src/envs/zones/safety-gymnasium/safety_gymnasium/__init__.py` - Environment registration
@@ -201,9 +257,51 @@ Color palette (matches paper):
 - Yellow: `#fdd835`
 - Magenta: `violet`
 
+## Optimality Training Experiments
+
+### Curriculum Variants
+Three curriculum variants to test the "nearest zone bias" hypothesis:
+
+| Variant | Curriculum Key | Description |
+|---------|----------------|-------------|
+| **V0: baseline** | `PointLtl2-v0` | Original (starts with 1-step reach) |
+| **V1: twostep** | `PointLtl2-v0.twostep` | Starts with 2-step only (no 1-step bias) |
+| **V2: mixed** | `PointLtl2-v0.mixed` | 75% 2-step + 25% 1-step (stability) |
+
+### Sweep Script
+```bash
+# Single experiment with specific settings
+python run_optimality_sweep.py --discount 0.95 --curriculum twostep
+
+# Full sweep: 5 discounts × 3 curricula = 15 experiments
+python run_optimality_sweep.py --sweep
+
+# Sweep discount only (with fixed curriculum)
+python run_optimality_sweep.py --sweep_discount --curriculum twostep
+
+# Dry run to preview
+python run_optimality_sweep.py --sweep --dry_run
+```
+
+### Discount Factor Values
+Sweep values: {0.94, 0.97, 0.99, 0.995, 0.998}
+- At γ=0.998: 100-step difference → return ratio ~0.82 (minimal)
+- At γ=0.95: 100-step difference → return ratio ~0.006 (strong signal)
+
+### Key Training Flags
+- `--discount`: Discount factor (default 0.998)
+- `--curriculum`: Curriculum key (baseline, twostep, mixed)
+- `--entropy_coef`: Entropy regularization (default 0.003)
+- `--lr`: Learning rate (default 0.0003)
+
+### Documentation
+- Full experiment documentation: `interpretability/zone_env/OPTIMALITY_EXPERIMENTS.md`
+- Spatial bias analysis: `interpretability/results/empirical_difficulty/ANALYSIS_SUMMARY.md`
+
 ## Notes for Future Work
 - The LtlOptimalityVaried environment extracts custom config keys (`layout_seed`, `intermediate_color`, `goal_color`) before passing config to parent class (which validates keys)
 - When overriding registered config, must include `agent_name: 'Point'`
 - Layout sampling can fail occasionally - wrap in try/except
 - Zone separation constraints in optvar: min 1.0 distance between zone centers, min 0.6 from agent to zones
 - The `_check_min_distances()` method in LtlOptimalityVaried enforces these constraints
+- **Agent orientation**: Consider logging heading direction during rollouts to check forward-motion bias
