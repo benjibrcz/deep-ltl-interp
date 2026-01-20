@@ -130,15 +130,29 @@ Does the value function anticipate future difficulty?
 
 ---
 
-## 6. Did Training for Planning Help?
+## 6. Did Training Interventions Help?
 
+### Auxiliary Loss Approaches
 We tried several approaches to induce planning:
 - Step penalties
 - Auxiliary loss (predict chained distances)
 - Transition prediction loss
 - Combined approaches
 
-**Result**: Probe R² improved (0.315 → 0.405), but behavioral planning did NOT improve. The agent still chooses at ~50% on optimality tests.
+**Result**: Probe R² improved (0.315 → 0.405), but behavioral planning did NOT improve.
+
+### Curriculum & Discount Interventions (Based on DeepLTL Author's Suggestions)
+
+The DeepLTL author suggested that the baseline's high discount (0.998) makes return differences minimal, and starting with 1-step sequences biases toward "nearest zone" heuristics. We tested:
+
+| Experiment | Discount | Curriculum | Task Success | Optimal Choice |
+|------------|----------|------------|--------------|----------------|
+| fresh_baseline | 0.998 | 1-step start | 91% | 58% (not sig.) |
+| twostep_lowdiscount | 0.95 | 2-step only | 38% | - (too low success) |
+| opt_d095_mixed | 0.95 | 75% 2-step + 25% 1-step | 64% | - |
+| **opt_d099_mixed** | **0.99** | **mixed** | **85%** | **52%** (p=0.76) |
+
+**Result**: The mixed curriculum with d=0.99 achieves near-baseline task success (85%), but shows **no improvement in planning** - 52% optimal choice is indistinguishable from random (p=0.764).
 
 ---
 
@@ -153,7 +167,8 @@ We tried several approaches to induce planning:
 | Controlled orientation (58%, not sig.) | No - random when bias removed |
 | Probing (low R² for computed features) | No - missing representations |
 | Value function (first-step dominated) | No - no lookahead |
-| Training interventions | No - didn't help |
+| Auxiliary loss interventions | No - probe R² up but behavior unchanged |
+| Curriculum/discount interventions | No - 52% optimal (p=0.76), still random |
 
 **The DeepLTL agent succeeds through reactive heuristics, not planning.**
 

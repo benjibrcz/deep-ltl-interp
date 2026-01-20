@@ -332,16 +332,61 @@ Agent became faster and more reliable, but planning behavior unchanged.
 | Baseline | 0.315 | ~50% | 93% |
 | Combined | **0.405** | ~50% | 75% |
 
-## 4.3 Key Conclusion
+## 4.3 Key Conclusion (Auxiliary Losses)
 
 **Improving probe R² does not improve planning behavior.**
 
 All approaches improved the model's ability to encode chained distances (as measured by linear probes), but none improved actual decision-making on optimality tasks.
 
+---
+
+## 4.4 Curriculum & Discount Interventions
+
+Based on insights from the DeepLTL author, we tested whether curriculum and discount changes could induce planning:
+
+### Author's Hypotheses
+
+1. **High discount (0.998)** makes return differences between optimal/suboptimal paths minimal
+2. **1-step curriculum start** biases the agent toward "nearest zone" heuristics
+3. **Lower discount + 2-step emphasis** might force the agent to learn planning
+
+### Experiments
+
+| Experiment | Discount | Curriculum | Description |
+|------------|----------|------------|-------------|
+| fresh_baseline | 0.998 | baseline | Original (1-step start) |
+| twostep_lowdiscount | 0.95 | 2-step only | Start with 2-step sequences |
+| opt_d095_mixed | 0.95 | mixed | 75% 2-step + 25% 1-step |
+| opt_d099_mixed | 0.99 | mixed | Higher discount for stability |
+
+### Training Results
+
+| Experiment | Task Success | Plateau Stability |
+|------------|--------------|-------------------|
+| fresh_baseline | **91%** | Stable (±2%) |
+| twostep_lowdiscount | **38%** | Declining |
+| opt_d095_mixed | **64%** | Noisy (±8%) |
+| opt_d099_mixed | **85%** | Stable (±4%) |
+
+The pure 2-step curriculum with low discount (0.95) was too aggressive - the agent couldn't learn effectively. The mixed curriculum with d=0.99 achieved near-baseline performance.
+
+### Optimality Test Results (Controlled Orientation)
+
+| Model | Optimal Choice | 95% CI | p-value |
+|-------|---------------|--------|---------|
+| fresh_baseline | 58.3% | [48.3%, 67.7%] | 0.125 |
+| **opt_d099_mixed** | **52.0%** | [42.3%, 61.5%] | **0.764** |
+
+### Key Finding
+
+**Curriculum and discount interventions do not improve planning.**
+
+The opt_d099_mixed model achieves 85% task success with the 2-step-heavy curriculum, but shows **52% optimal choice** - indistinguishable from random (p=0.764). The agent finds heuristic solutions regardless of how it's trained.
+
 This suggests:
-1. The model may encode the information but not use it for decisions
-2. Planning requires more than just having the right representations
-3. The lack of lookahead is robust under the auxiliary objectives we tried
+1. The lack of planning is not due to insufficient training signal
+2. The agent consistently discovers non-planning strategies
+3. Planning may require architectural changes, not just training modifications
 
 ---
 
@@ -358,7 +403,8 @@ This suggests:
 | Controlled orientation (58%) | Random when forward bias removed (p=0.125) | No |
 | Probing (R² 0.08-0.18) | Missing chained distance representations | No |
 | Value function (~50% controlled) | First-step dominated | No |
-| Training interventions | Probe R² up but behavior unchanged | No |
+| Auxiliary loss interventions | Probe R² up but behavior unchanged | No |
+| Curriculum/discount (opt_d099_mixed) | 52% optimal (p=0.764), still random | No |
 
 ## 5.2 The Heuristic Hierarchy
 
@@ -387,6 +433,8 @@ These heuristics explain the results:
 4. **Auxiliary supervision improves representations but not behavior**: Higher probe R² doesn't translate to better decisions
 
 5. **The forward motion heuristic is robust**: The agent strongly prefers to go in the direction it's initially facing. This is likely learned from the training distribution where forward motion is often rewarded.
+
+6. **Curriculum and discount changes don't help**: Even with 2-step-heavy curriculum (75% 2-step + 25% 1-step) and lower discount (0.99), the agent achieves 85% task success but still shows random optimal choice (52%, p=0.764). The lack of planning appears fundamental to RL in this domain.
 
 ---
 
@@ -429,6 +477,21 @@ These heuristics explain the results:
 | `results/empirical_difficulty/` | Empirical difficulty and orientation bias analysis |
 | `results/empirical_difficulty/orientation_bias_*.csv` | Orientation bias raw data |
 | `results/empirical_difficulty/controlled_orientation_*.csv` | Controlled orientation test data |
+
+## Training Scripts
+| File | Purpose |
+|------|---------|
+| `run_optimality_sweep.py` | Sweep discount factors and curricula |
+| `src/sequence/samplers/curriculum.py` | Curriculum definitions (ZONES_TWOSTEP, ZONES_MIXED) |
+
+## Trained Models (Curriculum Experiments)
+| Directory | Description |
+|-----------|-------------|
+| `experiments/ppo/PointLtl2-v0/fresh_baseline/` | Baseline (d=0.998, 1-step start) |
+| `experiments/ppo/PointLtl2-v0/extended_baseline/` | Extended training (30M steps) |
+| `experiments/ppo/PointLtl2-v0/twostep_lowdiscount/` | 2-step only, d=0.95 |
+| `experiments/ppo/PointLtl2-v0/opt_d095_mixed/` | Mixed curriculum, d=0.95 |
+| `experiments/ppo/PointLtl2-v0/opt_d099_mixed/` | Mixed curriculum, d=0.99 |
 
 ---
 

@@ -236,6 +236,158 @@ ZONES_CURRICULUM = Curriculum([
 
 
 # =============================================================================
+# ZONES TWO-STEP CURRICULUM (Author's suggestion)
+# =============================================================================
+# Modified curriculum that STARTS with 2-step sequences to avoid biasing
+# the agent toward "go to closest zone" heuristic.
+#
+# Key changes from ZONES_CURRICULUM:
+# - Stage 0: Start with 2-step reach sequences (not 1-step)
+# - Stage 1: 2-step reach-avoid sequences (skip 1-step reach-avoid)
+# - Combined with lower discount factor (0.95) to amplify return differences
+#
+# Rationale (from DeepLTL author):
+# - Single-step training biases agent to prefer closest zone
+# - High discount (0.998) makes optimal/suboptimal returns nearly equal
+# - Starting with 2-step may encourage planning from the beginning
+
+ZONES_TWOSTEP_CURRICULUM = Curriculum([
+    ExplicitCurriculumStage(  # 0: Start directly with 2-step reach
+        task_fn=all_reach_tasks(2),
+        temperature=0.5,
+        threshold=0.8,
+        threshold_type='min',
+    ),
+    ExplicitCurriculumStage(  # 1: 2-step reach-avoid (skip 1-step)
+        task_fn=all_reach_avoid_tasks(2),
+        threshold=0.9,
+        threshold_type='mean'
+    ),
+    MultiRandomStage(  # 2: Mix of 2-step and 3-step reach-avoid
+        stages=[
+            RandomCurriculumStage(
+                sampler=sample_reach_avoid(2, (1, 2), (1, 2)),
+                threshold=None,
+                threshold_type=None
+            ),
+            RandomCurriculumStage(
+                sampler=sample_reach_avoid(3, (1, 2), (0, 2)),
+                threshold=None,
+                threshold_type=None
+            ),
+        ],
+        probs=[0.6, 0.4],
+        threshold=0.9,
+        threshold_type='mean'
+    ),
+    MultiRandomStage(  # 3: Complex multi-step tasks
+        stages=[
+            RandomCurriculumStage(
+                sampler=sample_reach_avoid(3, (1, 2), (0, 3)),
+                threshold=None,
+                threshold_type=None
+            ),
+            RandomCurriculumStage(
+                sampler=sample_reach_stay(60, (0, 2)),
+                threshold=None,
+                threshold_type=None
+            ),
+        ],
+        probs=[0.8, 0.2],
+        threshold=None,
+        threshold_type=None
+    ),
+])
+
+
+# =============================================================================
+# ZONES MIXED CURRICULUM (V2: mixed2)
+# =============================================================================
+# Starts with 2-step sequences but includes 10-25% of 1-step for stability.
+# This avoids the "nearest-zone lock-in" while maintaining training stability.
+#
+# Key design:
+# - Stage 0: 75% 2-step reach + 25% 1-step reach (stabilized start)
+# - Stage 1: 90% 2-step reach-avoid + 10% 1-step reach-avoid
+# - Later stages: progressively longer sequences
+
+ZONES_MIXED_CURRICULUM = Curriculum([
+    MultiRandomStage(  # 0: Mixed 1-step (25%) + 2-step (75%) reach
+        stages=[
+            ExplicitCurriculumStage(
+                task_fn=all_reach_tasks(1),
+                temperature=0.5,
+                threshold=None,
+                threshold_type=None,
+            ),
+            ExplicitCurriculumStage(
+                task_fn=all_reach_tasks(2),
+                temperature=0.5,
+                threshold=None,
+                threshold_type=None,
+            ),
+        ],
+        probs=[0.25, 0.75],
+        threshold=0.8,
+        threshold_type='min',
+    ),
+    MultiRandomStage(  # 1: Mixed 1-step (10%) + 2-step (90%) reach-avoid
+        stages=[
+            ExplicitCurriculumStage(
+                task_fn=all_reach_avoid_tasks(1),
+                temperature=0.5,
+                threshold=None,
+                threshold_type=None,
+            ),
+            ExplicitCurriculumStage(
+                task_fn=all_reach_avoid_tasks(2),
+                temperature=0.5,
+                threshold=None,
+                threshold_type=None,
+            ),
+        ],
+        probs=[0.10, 0.90],
+        threshold=0.9,
+        threshold_type='mean',
+    ),
+    MultiRandomStage(  # 2: Mix of 2-step and 3-step reach-avoid
+        stages=[
+            RandomCurriculumStage(
+                sampler=sample_reach_avoid(2, (1, 2), (1, 2)),
+                threshold=None,
+                threshold_type=None
+            ),
+            RandomCurriculumStage(
+                sampler=sample_reach_avoid(3, (1, 2), (0, 2)),
+                threshold=None,
+                threshold_type=None
+            ),
+        ],
+        probs=[0.6, 0.4],
+        threshold=0.9,
+        threshold_type='mean'
+    ),
+    MultiRandomStage(  # 3: Complex multi-step tasks
+        stages=[
+            RandomCurriculumStage(
+                sampler=sample_reach_avoid(3, (1, 2), (0, 3)),
+                threshold=None,
+                threshold_type=None
+            ),
+            RandomCurriculumStage(
+                sampler=sample_reach_stay(60, (0, 2)),
+                threshold=None,
+                threshold_type=None
+            ),
+        ],
+        probs=[0.8, 0.2],
+        threshold=None,
+        threshold_type=None
+    ),
+])
+
+
+# =============================================================================
 # ZONES PLANNING CURRICULUM
 # =============================================================================
 # Extended curriculum that adds planning-required formula types:
